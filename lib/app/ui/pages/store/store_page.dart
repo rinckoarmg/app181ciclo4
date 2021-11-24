@@ -6,18 +6,18 @@ import 'package:movil181/app/ui/widgets/text_converter.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class ProjectPage extends StatelessWidget {
-  const ProjectPage({Key? key}) : super(key: key);
+class StorePage extends StatelessWidget {
+  const StorePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final projectService = Provider.of<ProjectService>(context);
+    final storeService = Provider.of<StoreService>(context);
     final textConverter = TextConverter();
     final viewInfo = ViewInfoCategory();
-    
+
     return Scaffold(
       appBar: AppBarGeneral().appBarG(),
       body: Stack(children: [
-        _backgroungImage(imagen: projectService.selectedProject.image),
+        _backgroungImage(imagen: storeService.selectedStore.image),
         Container(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -47,7 +47,7 @@ class ProjectPage extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 20),
                               child: Text(
-                                projectService.selectedProject.name,
+                                storeService.selectedStore.name,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Monserrat',
@@ -61,7 +61,7 @@ class ProjectPage extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 5),
                             child: Text(
-                              projectService.selectedProject.decription,
+                              storeService.selectedStore.decription,
                               textAlign: TextAlign.justify,
                               style: TextStyle(
                                 fontFamily: 'Monserrat',
@@ -81,21 +81,31 @@ class ProjectPage extends StatelessWidget {
                                   placeholder:
                                       AssetImage('assets/jar-loading.gif'),
                                   image: AssetImage(
-                                      'assets/${projectService.selectedProject.category}'),
+                                      'assets/${storeService.selectedStore.category}'),
                                 ),
                                 Expanded(
                                   child: Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10),
                                     child: TextButton(
-                                      onPressed: (){
-                                        viewInfo.viewInfo(context, projectService.selectedProject.category, textConverter.infoCategory(projectService.selectedProject.category), textConverter.iconToCategory(projectService
-                                            .selectedProject.category),);
+                                      onPressed: () {
+                                        viewInfo.viewInfo(
+                                          context,
+                                          storeService.selectedStore.category,
+                                          textConverter.infoCategory(
+                                              storeService
+                                                  .selectedStore.category),
+                                          textConverter.iconToCategory(
+                                              storeService
+                                                  .selectedStore.category),
+                                        );
                                       },
                                       child: Text(
-                                        //textConverter.textCategory(projectService.selectedProject.category),
-                                        textConverter.iconToCategory(projectService.selectedProject.category),
-                                        
+                                        //textConverter.textCategory(storeService.selectedStore.category),
+                                        textConverter.iconToCategory(
+                                            storeService
+                                                .selectedStore.category),
+
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -123,7 +133,7 @@ class ProjectPage extends StatelessWidget {
           FloatingActionButton(
               heroTag: 'btn1',
               onPressed: () {
-                projectService.selectedProject;
+                storeService.selectedStore;
                 Navigator.pushNamed(context, Routes.ADDPROJECT);
               },
               child: Icon(Icons.edit)),
@@ -132,9 +142,9 @@ class ProjectPage extends StatelessWidget {
               heroTag: 'btn2',
               onPressed: () => _viewContact(
                   context,
-                  projectService.selectedProject.contact,
-                  projectService.selectedProject.email,
-                  projectService.selectedProject.web),
+                  storeService.selectedStore.contact,
+                  storeService.selectedStore.email,
+                  storeService.selectedStore.web),
               child: Icon(Icons.contact_mail)),
         ],
       ),
@@ -231,7 +241,6 @@ class ProjectPage extends StatelessWidget {
           );
         });
   }
-
 }
 
 class _backgroungImage extends StatelessWidget {

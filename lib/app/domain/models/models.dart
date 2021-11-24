@@ -1,2 +1,1 @@
-
-export 'package:movil181/app/domain/models/project_model.dart';
+export 'package:movil181/app/domain/models/store_model.dart';

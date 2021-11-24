@@ -14,100 +14,65 @@ class FilterHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final projectService = Provider.of<ProjectService>(context, listen: false);
+    final storeService = Provider.of<StoreService>(context, listen: false);
     final textConverter = TextConverter();
     var listado;
     String icono = '';
     String texto = '';
-    if (projectService.isLoading) return LoadingScreen();
+    if (storeService.isLoading) return LoadingScreen();
 
     switch (lista) {
       case 0:
-        listado = projectService.listProjects;
+        listado = storeService.listStores;
         break;
       case 1:
-        listado = projectService.list1;
-        icono = 'sdg-es-01.png';
+        listado = storeService.list1;
+        icono = 'Restaurantes.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 2:
-        listado = projectService.list2;
-        icono = 'sdg-es-02.png';
+        listado = storeService.list2;
+        icono = 'Farmacias.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 3:
-        listado = projectService.list3;
-        icono = 'sdg-es-03.png';
+        listado = storeService.list3;
+        icono = 'Licores.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 4:
-        listado = projectService.list4;
-        icono = 'sdg-es-04.png';
+        listado = storeService.list4;
+        icono = 'Minimercado.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 5:
-        listado = projectService.list5;
-        icono = 'sdg-es-05.png';
+        listado = storeService.list5;
+        icono = 'Panaderias.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 6:
-        listado = projectService.list6;
-        icono = 'sdg-es-06.png';
+        listado = storeService.list6;
+        icono = 'Paseador.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 7:
-        listado = projectService.list7;
-        icono = 'sdg-es-07.png';
+        listado = storeService.list7;
+        icono = 'Plomeria.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 8:
-        listado = projectService.list8;
-        icono = 'sdg-es-08.png';
+        listado = storeService.list8;
+        icono = 'Cerrajeria.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 9:
-        listado = projectService.list9;
-        icono = 'sdg-es-09.png';
+        listado = storeService.list9;
+        icono = 'Electricos.png';
         texto = textConverter.infoCategory(icono);
         break;
       case 10:
-        listado = projectService.list10;
-        icono = 'sdg-es-10.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 11:
-        listado = projectService.list11;
-        icono = 'sdg-es-11.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 12:
-        listado = projectService.list12;
-        icono = 'sdg-es-12.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 13:
-        listado = projectService.list13;
-        icono = 'sdg-es-13.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 14:
-        listado = projectService.list14;
-        icono = 'sdg-es-14.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 15:
-        listado = projectService.list15;
-        icono = 'sdg-es-15.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 16:
-        listado = projectService.list16;
-        icono = 'sdg-es-16.png';
-        texto = textConverter.infoCategory(icono);
-        break;
-      case 17:
-        listado = projectService.list17;
-        icono = 'sdg-es-17.png';
+        listado = storeService.list10;
+        icono = 'Domesticos.png';
         texto = textConverter.infoCategory(icono);
         break;
     }
@@ -132,14 +97,13 @@ class FilterHome extends StatelessWidget {
               itemCount: listado.length,
               itemBuilder: (BuildContext context, int index) => GestureDetector(
                     onTap: () {
-                      projectService.selectedProject = listado[index];
+                      storeService.selectedStore = listado[index];
                       Navigator.pushNamed(context, Routes.PROJECT);
                     },
-                    child: ProjectCard(
-                      project: listado[index],
+                    child: StoreCard(
+                      store: listado[index],
                     ),
                   ))),
-
       floatingActionButton: Row(
         children: <Widget>[
           SizedBox(width: 30),

@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-class ProjectImage extends StatelessWidget {
+class StoreImage extends StatelessWidget {
   final String? url;
 
-  const ProjectImage({Key? key, this.url}) : super(key: key);
+  const StoreImage({Key? key, this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

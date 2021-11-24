@@ -20,41 +20,14 @@ class AppBarGeneral extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-              'ODS -',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.purple,
-              ),
+            '20 Cuadras',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Monserrat',
+              fontSize: 25,
+              color: Colors.purple,
             ),
-          Text(
-              ' Por',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.amber,
-              ),
-            ),
-          Text(
-              ' el',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.indigo,
-              ),
-            ),
-          Text(
-              ' Cambio',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.green,
-              ),
-            ),
+          ),
         ],
       ),
       centerTitle: true,
@@ -69,14 +42,13 @@ class AppBarGeneral extends StatelessWidget {
         ),
         */
         Container(
-          child: IconButton(
-            onPressed: () async {
+            child: IconButton(
+          onPressed: () async {
             await Get.i.find<AuthenticationRepository>().signOut();
             router.pushNamedAndRemoveUntil(Routes.LOGIN);
-            },
-            icon: Icon(Icons.exit_to_app),
-          )
-        ),
+          },
+          icon: Icon(Icons.exit_to_app),
+        )),
       ],
     );
   }

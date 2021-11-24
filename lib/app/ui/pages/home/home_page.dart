@@ -16,86 +16,58 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final projectService = Provider.of<ProjectService>(context);
-    if (projectService.isLoading) return LoadingScreen();
-    final List<Projects> lista = projectService.listProjects;
+    final storeService = Provider.of<StoreService>(context);
+    if (storeService.isLoading) return LoadingScreen();
+    final List<Stores> lista = storeService.listStores;
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0.5,
         leading: PopupMenuButton<int>(
-          enableFeedback: true,
-          tooltip: 'Lista de categorias',
+            enableFeedback: true,
+            tooltip: 'Lista de categorias',
             icon: Icon(Icons.menu),
             onSelected: (item) => onSelected(context, item),
             itemBuilder: (context) => [
                   const PopupMenuItem(
                     value: 1,
-                    child: Text('1. Fin de la pobreza'),
+                    child: Text('Restaurantes'),
                   ),
                   const PopupMenuItem(
                     value: 2,
-                    child: Text('2. Hambre cero'),
+                    child: Text('Farmacias'),
                   ),
                   const PopupMenuItem(
                     value: 3,
-                    child: Text('3. Salud y bienestar'),
+                    child: Text('Licores'),
                   ),
                   const PopupMenuItem(
                     value: 4,
-                    child: Text('4. Educación de calidad'),
+                    child: Text('Minimercado'),
                   ),
                   const PopupMenuItem(
                     value: 5,
-                    child: Text('5. Igualdad de género'),
+                    child: Text('Panaderías'),
                   ),
                   const PopupMenuItem(
                     value: 6,
-                    child: Text('6. Agua limpia y saneamiento'),
+                    child: Text('Paseador de perros'),
                   ),
                   const PopupMenuItem(
                     value: 7,
-                    child: Text('7. Energía asequible y no contaminante'),
+                    child: Text('Plomería'),
                   ),
                   const PopupMenuItem(
                     value: 8,
-                    child: Text('8. Trabajo decente y crecimiento económico'),
+                    child: Text('Cerrajería'),
                   ),
                   const PopupMenuItem(
                     value: 9,
-                    child: Text('9. Industria, innovación e infraestructura'),
+                    child: Text('Servicios eléctricos'),
                   ),
                   const PopupMenuItem(
                     value: 10,
-                    child: Text('10. Reducción de las desigualdades'),
-                  ),
-                  const PopupMenuItem(
-                    value: 11,
-                    child: Text('11. Ciudades y comunidades sostenibles'),
-                  ),
-                  const PopupMenuItem(
-                    value: 12,
-                    child: Text('12. Producción y consumo responsables'),
-                  ),
-                  const PopupMenuItem(
-                    value: 13,
-                    child: Text('13. Acción por el clima'),
-                  ),
-                  const PopupMenuItem(
-                    value: 14,
-                    child: Text('14. Vida submarina'),
-                  ),
-                  const PopupMenuItem(
-                    value: 15,
-                    child: Text('15. Vida de ecosistemas terrestres'),
-                  ),
-                  const PopupMenuItem(
-                    value: 16,
-                    child: Text('16. Paz, justicia e instituciones sólidas'),
-                  ),
-                  const PopupMenuItem(
-                    value: 17,
-                    child: Text('17. Alianzas para lograr los objetivos'),
+                    child: Text('Servicios domésticos'),
                   ),
                 ]),
         title: Row(
@@ -103,39 +75,12 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'ODS -',
+              '20 Cuadras',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Monserrat',
                 fontSize: 25,
                 color: Colors.purple,
-              ),
-            ),
-            Text(
-              ' Por',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.amber,
-              ),
-            ),
-            Text(
-              ' el',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.indigo,
-              ),
-            ),
-            Text(
-              ' Cambio',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.green,
               ),
             ),
           ],
@@ -144,7 +89,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-            tooltip: 'Cerrar sesión',
+              tooltip: 'Cerrar sesión',
               onPressed: () async {
                 await meedu.Get.i.find<AuthenticationRepository>().signOut();
                 router.pushNamedAndRemoveUntil(Routes.LOGIN);
@@ -155,20 +100,20 @@ class HomePage extends StatelessWidget {
       body: Padding(
           padding: EdgeInsets.only(bottom: 40),
           child: ListView.builder(
-              itemCount: projectService.listProjects.length,
+              itemCount: storeService.listStores.length,
               itemBuilder: (BuildContext context, int index) => GestureDetector(
                     onTap: () {
-                      projectService.selectedProject =
-                          projectService.listProjects[index];
+                      storeService.selectedStore =
+                          storeService.listStores[index];
                       Navigator.pushNamed(context, Routes.PROJECT);
                     },
-                    child: ProjectCard(
-                      project: projectService.listProjects[index],
+                    child: StoreCard(
+                      store: storeService.listStores[index],
                     ),
                   ))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          projectService.selectedProject = new Projects(
+          storeService.selectedStore = new Stores(
               category: 'sdg-es-07.png',
               contact: '',
               decription: '',
@@ -186,90 +131,50 @@ class HomePage extends StatelessWidget {
 }
 
 void onSelected(BuildContext context, int item) {
-  //final projectService = Provider.of<ProjectService>(context, listen: false);
+  //final storeService = Provider.of<StoreService>(context, listen: false);
   switch (item) {
     case 1:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              FilterHome(lista: 1, name: 'Fin de la pobreza')));
+          builder: (context) => FilterHome(lista: 1, name: 'Restaurantes')));
       break;
     case 2:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(lista: 2, name: 'Hambre cero')));
+          builder: (context) => FilterHome(lista: 2, name: 'Farmacias')));
       break;
     case 3:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              FilterHome(lista: 3, name: 'Salud y bienestar')));
+          builder: (context) => FilterHome(lista: 3, name: 'Licores')));
       break;
     case 4:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              FilterHome(lista: 4, name: 'Educación de calidad')));
+          builder: (context) => FilterHome(lista: 4, name: 'Minimercado')));
       break;
     case 5:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              FilterHome(lista: 5, name: 'Igualdad de género')));
+          builder: (context) => FilterHome(lista: 5, name: 'Panaderías')));
       break;
     case 6:
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) =>
-              FilterHome(lista: 6, name: 'Agua limpia y saneamiento')));
+              FilterHome(lista: 6, name: 'Paseador de perros')));
       break;
     case 7:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 7, name: 'Energía asequible y no contaminante')));
+          builder: (context) => FilterHome(lista: 7, name: 'Plomería')));
       break;
     case 8:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 8, name: 'Trabajo decente y crecimiento económico')));
+          builder: (context) => FilterHome(lista: 8, name: 'Cerrajería')));
       break;
     case 9:
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 9, name: 'Industria, innovación e infraestructura')));
+          builder: (context) =>
+              FilterHome(lista: 9, name: 'Servicios eléctricos')));
       break;
     case 10:
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) =>
-              FilterHome(lista: 10, name: 'Reducción de las desigualdades')));
-      break;
-    case 11:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 11, name: 'Ciudades y comunidades sostenibles')));
-      break;
-    case 12:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 12, name: 'Producción y consumo responsables')));
-      break;
-    case 13:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              FilterHome(lista: 13, name: 'Acción por el clima')));
-      break;
-    case 14:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(lista: 14, name: 'Vida submarina')));
-      break;
-    case 15:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              FilterHome(lista: 15, name: 'Vida de ecosistemas terrestres')));
-      break;
-    case 16:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 16, name: 'Paz, justicia e instituciones sólidas')));
-      break;
-    case 17:
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FilterHome(
-              lista: 17, name: 'Alianzas para lograr los objetivos')));
+              FilterHome(lista: 10, name: 'Servicios domésticos')));
       break;
   }
 }

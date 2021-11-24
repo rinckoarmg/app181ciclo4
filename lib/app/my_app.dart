@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movil181/app/ui/pages/add_project/add_project_controller.dart';
+import 'package:movil181/app/ui/pages/add_store/add_store_controller.dart';
 import 'package:movil181/app/ui/routes/app_routes.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
 import 'package:flutter_meedu/router.dart' as router;
@@ -11,9 +11,9 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ProjectService()),
+        ChangeNotifierProvider(create: (_) => StoreService()),
 
-        //ChangeNotifierProvider(create: (_) => AddProjectController()),
+        //ChangeNotifierProvider(create: (_) => AddStoreController()),
       ],
       child: MyApp(),
     );

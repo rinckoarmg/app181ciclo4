@@ -4,149 +4,144 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:movil181/app/domain/models/models.dart';
 
-class ProjectService extends ChangeNotifier {
-  final String _baseUrl = 'ods-app-e4d91-default-rtdb.firebaseio.com';
-  final List<Projects> listProjects = [];
-  final List<Projects> list1 = [];
-  final List<Projects> list2 = [];
-  final List<Projects> list3 = [];
-  final List<Projects> list4 = [];
-  final List<Projects> list5 = [];
-  final List<Projects> list6 = [];
-  final List<Projects> list7 = [];
-  final List<Projects> list8 = [];
-  final List<Projects> list9 = [];
-  final List<Projects> list10 = [];
-  final List<Projects> list11 = [];
-  final List<Projects> list12 = [];
-  final List<Projects> list13 = [];
-  final List<Projects> list14 = [];
-  final List<Projects> list15 = [];
-  final List<Projects> list16 = [];
-  final List<Projects> list17 = [];
+class StoreService extends ChangeNotifier {
+  final String _baseUrl = 'mi-barrio-177fd-default-rtdb.firebaseio.com';
+  final List<Stores> listStores = [];
+  final List<Stores> list1 = [];
+  final List<Stores> list2 = [];
+  final List<Stores> list3 = [];
+  final List<Stores> list4 = [];
+  final List<Stores> list5 = [];
+  final List<Stores> list6 = [];
+  final List<Stores> list7 = [];
+  final List<Stores> list8 = [];
+  final List<Stores> list9 = [];
+  final List<Stores> list10 = [];
+  final List<Stores> list11 = [];
+  final List<Stores> list12 = [];
+  final List<Stores> list13 = [];
+  final List<Stores> list14 = [];
+  final List<Stores> list15 = [];
+  final List<Stores> list16 = [];
+  final List<Stores> list17 = [];
+  final List<Stores> listProductos = [];
+  final List<Stores> listServicios = [];
 
-  late Projects selectedProject;
+  late Stores selectedStore;
 
   File? newPhoto;
   bool isLoading = true;
   bool isSaving = false;
 
-  ProjectService() {
-    loadProjects();
+  StoreService() {
+    loadStores();
   }
 
-  Future<List<Projects>> loadProjects() async {
+  Future<List<Stores>> loadStores() async {
     isLoading = true;
     notifyListeners();
-    final url = Uri.https(_baseUrl, '/project.json');
+    final url = Uri.https(_baseUrl, '/store.json');
     final resp = await http.get(url);
     final Map<String, dynamic> projectMap = json.decode(resp.body);
     //print(projectMap);
 
     projectMap.forEach((key, value) {
-      final tempProjects = Projects.fromMap(value);
-      tempProjects.id = key;
-      listProjects.add(tempProjects);
+      final tempStores = Stores.fromMap(value);
+      tempStores.id = key;
+      listStores.add(tempStores);
+      if (tempStores.category == 'Restaurantes.png' ||
+          tempStores.category == 'Farmacias.png' ||
+          tempStores.category == 'Licores.png' ||
+          tempStores.category == 'Minimercado.png' ||
+          tempStores.category == 'Panaderias.png') {
+        listProductos.add(tempStores);
+      }
+      if (tempStores.category == 'Paseador.png' ||
+          tempStores.category == 'Plomeria.png' ||
+          tempStores.category == 'Cerrajeria.png' ||
+          tempStores.category == 'Electricos.png' ||
+          tempStores.category == 'Domesticos.png') {
+        listServicios.add(tempStores);
+      }
 
-      if (tempProjects.category == 'sdg-es-01.png') {
-        list1.add(tempProjects);
+      if (tempStores.category == 'Restaurantes.png') {
+        list1.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-02.png') {
-        list2.add(tempProjects);
+      if (tempStores.category == 'Farmacias.png') {
+        list2.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-03.png') {
-        list3.add(tempProjects);
+      if (tempStores.category == 'Licores.png') {
+        list3.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-04.png') {
-        list4.add(tempProjects);
+      if (tempStores.category == 'Minimercado.png') {
+        list4.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-05.png') {
-        list5.add(tempProjects);
+      if (tempStores.category == 'Panaderias.png') {
+        list5.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-06.png') {
-        list6.add(tempProjects);
+      if (tempStores.category == 'Paseador.png') {
+        list6.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-07.png') {
-        list7.add(tempProjects);
+      if (tempStores.category == 'Plomeria.png') {
+        list7.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-08.png') {
-        list8.add(tempProjects);
+      if (tempStores.category == 'Cerrajeria.png') {
+        list8.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-09.png') {
-        list9.add(tempProjects);
+      if (tempStores.category == 'Electricos.png') {
+        list9.add(tempStores);
       }
-      if (tempProjects.category == 'sdg-es-10.png') {
-        list10.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-11.png') {
-        list11.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-12.png') {
-        list12.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-13.png') {
-        list13.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-14.png') {
-        list14.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-15.png') {
-        list15.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-16.png') {
-        list16.add(tempProjects);
-      }
-      if (tempProjects.category == 'sdg-es-17.png') {
-        list17.add(tempProjects);
+      if (tempStores.category == 'Domesticos.png') {
+        list10.add(tempStores);
       }
     });
 
     isLoading = false;
     notifyListeners();
 
-    //print(listProjects);
-    return listProjects;
+    //print(listStores);
+    return listStores;
   }
 
-  Future saveProject(Projects project) async {
+  Future saveStore(Stores project) async {
     isSaving = true;
     notifyListeners();
 
     if (project.id == null) {
-      await createProject(project);
+      await createStore(project);
     } else {
-      await this.updateProject(project);
+      await this.updateStore(project);
     }
 
     isSaving = false;
     notifyListeners();
   }
 
-  Future<String> updateProject(Projects project) async {
+  Future<String> updateStore(Stores project) async {
     final url = Uri.https(_baseUrl, '/project/${project.id}.json');
     final resp = await http.put(url, body: project.toJson());
     final decodeData = resp.body;
 
     print(decodeData);
 
-    final index = listProjects.indexWhere((i) => i.id == project.id);
-    listProjects[index] = project;
+    final index = listStores.indexWhere((i) => i.id == project.id);
+    listStores[index] = project;
     return project.id!;
   }
 
-  Future<String> createProject(Projects project) async {
+  Future<String> createStore(Stores project) async {
     final url = Uri.https(_baseUrl, '/project.json');
     final resp = await http.post(url, body: project.toJson());
     final decodeData = json.decode(resp.body);
 
     project.id = decodeData['name'];
 
-    this.listProjects.add(project);
+    this.listStores.add(project);
     return project.id!;
   }
 
   void updatePhoto(String path) {
-    selectedProject.image = path;
+    selectedStore.image = path;
     newPhoto = File.fromUri(Uri(path: path));
     notifyListeners();
   }

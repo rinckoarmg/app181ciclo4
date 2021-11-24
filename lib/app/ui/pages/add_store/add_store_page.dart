@@ -1,52 +1,47 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:movil181/app/data/data_source/remote/services.dart';
-import 'package:movil181/app/domain/models/project_model.dart';
-import 'package:movil181/app/ui/pages/add_project/add_project_controller.dart';
-import 'package:movil181/app/ui/pages/project/project_page.dart';
-import 'package:movil181/app/ui/widgets/project_image.dart';
+import 'package:movil181/app/ui/pages/add_store/add_store_controller.dart';
+import 'package:movil181/app/ui/widgets/store_image.dart';
 
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class AddProjectPage extends StatefulWidget {
-  const AddProjectPage({Key? key}) : super(key: key);
+class AddStorePage extends StatefulWidget {
+  const AddStorePage({Key? key}) : super(key: key);
 
   @override
-  _AddProjectPageState createState() => _AddProjectPageState();
+  _AddStorePageState createState() => _AddStorePageState();
 }
 
-class _AddProjectPageState extends State<AddProjectPage> {
+class _AddStorePageState extends State<AddStorePage> {
   @override
   Widget build(BuildContext context) {
-    final projectService = Provider.of<ProjectService>(context);
+    final storeService = Provider.of<StoreService>(context);
     final size = MediaQuery.of(context).size;
 
     return ChangeNotifierProvider(
-      create: (_) => AddProjectController(projectService.selectedProject),
-      child: AddProjectBody(projectService: projectService),
+      create: (_) => AddStoreController(storeService.selectedStore),
+      child: AddStoreBody(storeService: storeService),
     );
   }
 }
 
-class AddProjectBody extends StatefulWidget {
-  final ProjectService projectService;
+class AddStoreBody extends StatefulWidget {
+  final StoreService storeService;
 
-  const AddProjectBody({Key? key, required this.projectService})
-      : super(key: key);
+  const AddStoreBody({Key? key, required this.storeService}) : super(key: key);
 
   @override
-  _AddProjectBodyState createState() => _AddProjectBodyState();
+  _AddStoreBodyState createState() => _AddStoreBodyState();
 }
 
-class _AddProjectBodyState extends State<AddProjectBody> {
+class _AddStoreBodyState extends State<AddStoreBody> {
   @override
   Widget build(BuildContext context) {
-    final pService = Provider.of<AddProjectController>(context);
-    final projectCopied = pService.project;
-    final ProjectService projectService;
+    final pService = Provider.of<AddStoreController>(context);
+    final storeCopied = pService.store;
+    final StoreService storeService;
 
     return Scaffold(
       appBar: AppBarGeneral().appBarG(),
@@ -78,7 +73,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
                         Title(
                             color: Colors.purple,
                             child: Text(
-                              'Datos del Proyecto',
+                              'Datos de la tienda',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Monserrat',
@@ -86,15 +81,15 @@ class _AddProjectBodyState extends State<AddProjectBody> {
                                 color: Colors.purple[800],
                               ),
                             )),
-                        _categoria(projectCopied.category, pService),
-                        _pais(projectCopied.country, pService),
-                        _nombre(projectCopied.name, pService),
-                        _descripcion(projectCopied.decription, pService),
-                        _telefono(projectCopied.contact, pService),
-                        _email(projectCopied.email, pService),
-                        _web(projectCopied.web, pService),
-                        _imagen(projectCopied.image),
-                        _atribucion(projectCopied.atribution, pService),
+                        _categoria(storeCopied.category, pService),
+                        _direccion(storeCopied.address, pService),
+                        _nombre(storeCopied.name, pService),
+                        _descripcion(storeCopied.decription, pService),
+                        _telefono(storeCopied.contact, pService),
+                        _email(storeCopied.email, pService),
+                        _web(storeCopied.web, pService),
+                        _imagen(storeCopied.image),
+                        _atribucion(storeCopied.atribution, pService),
                         SizedBox(height: 30)
                       ],
                     ),
@@ -102,25 +97,25 @@ class _AddProjectBodyState extends State<AddProjectBody> {
             )),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: widget.projectService.isSaving
+          onPressed: widget.storeService.isSaving
               ? null
               : () async {
                   if (!pService.isValidForm()) return;
                   final String? imageUrl =
-                      await widget.projectService.uploadPhoto();
+                      await widget.storeService.uploadPhoto();
 
-                  if (imageUrl != null) pService.project.image = imageUrl;
+                  if (imageUrl != null) pService.store.image = imageUrl;
 
-                  await widget.projectService.saveProject(pService.project);
+                  await widget.storeService.saveStore(pService.store);
                   Navigator.of(context).pop();
                 },
-          child: widget.projectService.isSaving
+          child: widget.storeService.isSaving
               ? CircularProgressIndicator(color: Colors.white)
               : Icon(Icons.save)),
     );
   }
 
-  Widget _categoria(String category, AddProjectController pService) {
+  Widget _categoria(String category, AddStoreController pService) {
     final textConverter = TextConverter();
     String _opcionSeleccionada = textConverter.iconToCategory(category);
 
@@ -159,27 +154,21 @@ class _AddProjectBodyState extends State<AddProjectBody> {
   }
 
   List<DropdownMenuItem<String>> getOpcionesDropdown() {
-    List<DropdownMenuItem<String>> lista = [];
-    final List<String> _categories = [
-      'Seleccione una opción',
-      'Fin de la Pobreza',
-      'Hambre Cero',
-      'Salud y Bienestar',
-      'Educación de Calidad',
-      'Igualdad de Género',
-      'Agua Limpia y Saneamiento',
-      'Energia Asequible y no Contaminante',
-      'Trabajo Decente y Crecimiento Económico',
-      'Industria, Innovación e Infraestructura',
-      'Reducción de las Desigualdades',
-      'Ciudades y Comunidades Sostenibles',
-      'Producción y Consumo Responsables',
-      'Acción por el Clima',
-      'Vida Submarina',
-      'Vida de Ecosistemas Terrestres',
-      'Paz, Justicia e Instituciones Sólidas',
-      'Alianzas para lograr los objetivos',
+    final List _categories = [
+      'Restaurantes',
+      'Farmacias',
+      'Licores',
+      'Minimercado',
+      'Panaderías',
+      'Paseador de perros',
+      'Plomería',
+      'Cerrajería',
+      'Servicios eléctricos',
+      'Servicios domésticos',
+      'La categoria NO existe!'
     ];
+    List<DropdownMenuItem<String>> lista = [];
+
     _categories.forEach((i) {
       lista.add(DropdownMenuItem(
         child: Text(i),
@@ -191,7 +180,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
 
   Widget _nombre(
     String name,
-    AddProjectController pService,
+    AddStoreController pService,
   ) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
@@ -205,7 +194,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
         Padding(
           padding: EdgeInsets.only(top: 20, right: 25, left: 25),
           child: Text(
-            'Nombre del proyecto',
+            'Nombre del establecimiento',
             style: textStyle,
           ),
         ),
@@ -226,7 +215,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
     );
   }
 
-  Widget _descripcion(String decription, AddProjectController pService) {
+  Widget _descripcion(String decription, AddStoreController pService) {
     var textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
@@ -264,7 +253,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
     );
   }
 
-  Widget _telefono(String contact, AddProjectController pService) {
+  Widget _telefono(String contact, AddStoreController pService) {
     var textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
@@ -299,7 +288,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
     );
   }
 
-  Widget _email(String? email, AddProjectController pService) {
+  Widget _email(String? email, AddStoreController pService) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
@@ -334,7 +323,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
     );
   }
 
-  Widget _web(String? web, AddProjectController pService) {
+  Widget _web(String? web, AddStoreController pService) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
@@ -369,7 +358,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
     );
   }
 
-  Widget _pais(String? country, AddProjectController pService) {
+  Widget _direccion(String? address, AddStoreController pService) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
@@ -382,7 +371,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
         Padding(
           padding: EdgeInsets.only(top: 20, right: 25, left: 25),
           child: Text(
-            'Pais',
+            'Dirección',
             textAlign: TextAlign.left,
             style: textStyle,
           ),
@@ -391,11 +380,11 @@ class _AddProjectBodyState extends State<AddProjectBody> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: TextFormField(
-              initialValue: country,
+              initialValue: address,
               onChanged: (value) => pService.updateData(value, 3),
               validator: (value) {
                 if (value == null || value.length < 1)
-                  return 'El país es obligatorio';
+                  return 'La dirección es obligatoria';
               },
             ),
           ),
@@ -429,7 +418,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
             padding: const EdgeInsets.all(20),
             child: Stack(
               children: [
-                ProjectImage(url: widget.projectService.selectedProject.image),
+                StoreImage(url: widget.storeService.selectedStore.image),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -451,7 +440,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
                       }
                       //final File fotoPath = File(foto.path);
                       print('La imagen es ${foto.path}');
-                      widget.projectService.updatePhoto(foto.path);
+                      widget.storeService.updatePhoto(foto.path);
                     },
                   ),
                 ),
@@ -463,7 +452,7 @@ class _AddProjectBodyState extends State<AddProjectBody> {
     );
   }
 
-  _atribucion(String? atribution, AddProjectController pService) {
+  _atribucion(String? atribution, AddStoreController pService) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
