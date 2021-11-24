@@ -13,7 +13,7 @@ class StoreCard extends StatelessWidget {
       child: Container(
           margin: EdgeInsets.symmetric(vertical: 10),
           width: double.infinity,
-          height: 180,
+          height: 150,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -50,7 +50,7 @@ class _CategorieIcon extends StatelessWidget {
         fit: BoxFit.contain,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(55), topLeft: Radius.circular(20)),
+              bottomRight: Radius.circular(40), topLeft: Radius.circular(20)),
           child: FadeInImage(
             placeholder: AssetImage('assets/jar-loading.gif'),
             image: AssetImage('assets/${innerImage}'),
@@ -80,7 +80,7 @@ class _StoreDetails extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           width: double.infinity,
-          height: 50,
+          height: 40,
           decoration: BoxDecoration(
               color: Colors.black38,
               borderRadius: BorderRadius.only(
