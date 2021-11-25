@@ -29,7 +29,7 @@ class ProductosSlider extends StatelessWidget {
           //         color: Colors.teal[800],
           //       ),
           //     )),
-          SizedBox(height: 5),
+          //SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -54,11 +54,12 @@ class _ImagenProducto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 140,
-      height: 200,
+      width: 180,
+      height: 180,
       //color: Colors.green,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      //margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, Routes.PRODUCT,
@@ -70,14 +71,14 @@ class _ImagenProducto extends StatelessWidget {
                   image: NetworkImage(url)),
             ),
           ),
-          // SizedBox(height: 5),
-          // Text(
-          //   title!,
-          //   maxLines: 1,
-          //   overflow: TextOverflow.ellipsis,
-          //   textAlign: TextAlign.center,
-          //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          // )
+          SizedBox(height: 5),
+          Text(
+            title!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          )
         ],
       ),
     );

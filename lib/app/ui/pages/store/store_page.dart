@@ -73,9 +73,12 @@ class StorePage extends StatelessWidget {
                               maxLines: 9,
                             ),
                           ),
-                          ProductosSlider(
-                              listP: productService.listProductos,
-                              nombre: 'nombre'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: ProductosSlider(
+                                listP: productService.listProductos,
+                                nombre: 'nombre'),
+                          ),
                           // Padding(
                           //   padding: EdgeInsets.symmetric(
                           //       horizontal: 30, vertical: 20),
