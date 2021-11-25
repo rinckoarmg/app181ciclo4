@@ -36,6 +36,7 @@ class HomePage extends StatelessWidget {
         Scaffold(
           //backgroundColor: Colors.transparent,
           appBar: AppBar(
+            backgroundColor: Colors.teal,
             elevation: 0.5,
             leading: PopupMenuButton<int>(
                 enableFeedback: true,
@@ -94,13 +95,13 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Monserrat',
                     fontSize: 25,
-                    color: Colors.teal[800],
+                    //color: Colors.teal[800],
                   ),
                 ),
               ],
             ),
             centerTitle: true,
-            backgroundColor: Colors.white,
+            //backgroundColor: Colors.white,
             actions: [
               IconButton(
                   tooltip: 'Cerrar sesión',

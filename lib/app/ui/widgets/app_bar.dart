@@ -15,6 +15,7 @@ class AppBarGeneral extends StatelessWidget {
   PreferredSizeWidget appBarG() {
     return AppBar(
       elevation: 0.5,
+      backgroundColor: Colors.teal,
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +26,7 @@ class AppBarGeneral extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontFamily: 'Monserrat',
               fontSize: 25,
-              color: Colors.teal[800],
+              //color: Colors.teal[800],
             ),
           ),
         ],

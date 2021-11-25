@@ -79,17 +79,17 @@ class FilterHome extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text(
           name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontFamily: 'Monserrat',
             fontSize: 25,
-            color: Colors.deepPurple,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
       ),
       body: Padding(
           padding: EdgeInsets.only(bottom: 50),
@@ -113,14 +113,14 @@ class FilterHome extends StatelessWidget {
               viewInfo(context, icono, texto);
             },
             child: Icon(Icons.info_outline_rounded),
-            backgroundColor: Colors.purple,
+            //backgroundColor: Colors.purple,
           ),
           Expanded(child: SizedBox()),
           FloatingActionButton(
             heroTag: 'btn2',
             onPressed: () => Navigator.pushNamed(context, Routes.ADDPROJECT),
             child: Icon(Icons.add),
-            backgroundColor: Colors.purple,
+            //backgroundColor: Colors.purple,
           ),
         ],
       ),
