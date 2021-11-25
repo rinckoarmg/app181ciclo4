@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movil181/app/data/data_source/remote/product_service.dart';
 import 'package:movil181/app/ui/pages/add_store/add_store_controller.dart';
 import 'package:movil181/app/ui/routes/app_routes.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
@@ -12,8 +13,7 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => StoreService()),
-
-        //ChangeNotifierProvider(create: (_) => AddStoreController()),
+        ChangeNotifierProvider(create: (_) => ProductService()),
       ],
       child: MyApp(),
     );

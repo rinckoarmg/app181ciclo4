@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movil181/app/data/data_source/remote/product_service.dart';
 import 'package:movil181/app/data/data_source/remote/project_service.dart';
-import 'package:movil181/app/ui/pages/home/filter_home_page.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
+import 'package:movil181/app/ui/widgets/product_slider.dart';
 import 'package:movil181/app/ui/widgets/text_converter.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ class StorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final storeService = Provider.of<StoreService>(context);
+    final productService = Provider.of<ProductService>(context);
     final textConverter = TextConverter();
     final viewInfo = ViewInfoCategory();
 
@@ -52,14 +54,14 @@ class StorePage extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Monserrat',
                                   fontSize: 24,
-                                  color: Colors.purple[800],
+                                  color: Colors.teal[800],
                                 ),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 5),
+                            padding: EdgeInsets.only(
+                                bottom: 30, right: 20, left: 20),
                             child: Text(
                               storeService.selectedStore.decription,
                               textAlign: TextAlign.justify,
@@ -68,59 +70,62 @@ class StorePage extends StatelessWidget {
                                 fontSize: 15,
                                 color: Colors.black54,
                               ),
-                              maxLines: 12,
+                              maxLines: 9,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: Row(
-                              children: [
-                                FadeInImage(
-                                  height: 75,
-                                  placeholder:
-                                      AssetImage('assets/jar-loading.gif'),
-                                  image: AssetImage(
-                                      'assets/${storeService.selectedStore.category}'),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        viewInfo.viewInfo(
-                                          context,
-                                          storeService.selectedStore.category,
-                                          textConverter.infoCategory(
-                                              storeService
-                                                  .selectedStore.category),
-                                          textConverter.iconToCategory(
-                                              storeService
-                                                  .selectedStore.category),
-                                        );
-                                      },
-                                      child: Text(
-                                        //textConverter.textCategory(storeService.selectedStore.category),
-                                        textConverter.iconToCategory(
-                                            storeService
-                                                .selectedStore.category),
+                          ProductosSlider(
+                              listP: productService.listProductos,
+                              nombre: 'nombre'),
+                          // Padding(
+                          //   padding: EdgeInsets.symmetric(
+                          //       horizontal: 30, vertical: 20),
+                          //   child: Row(
+                          //     children: [
+                          //       FadeInImage(
+                          //         height: 75,
+                          //         placeholder:
+                          //             AssetImage('assets/jar-loading.gif'),
+                          //         image: AssetImage(
+                          //             'assets/${storeService.selectedStore.category}'),
+                          //       ),
+                          // Expanded(
+                          //   child: Padding(
+                          //     padding:
+                          //         EdgeInsets.symmetric(horizontal: 10),
+                          //     child: TextButton(
+                          //       onPressed: () {
+                          //         viewInfo.viewInfo(
+                          //           context,
+                          //           storeService.selectedStore.category,
+                          //           textConverter.infoCategory(
+                          //               storeService
+                          //                   .selectedStore.category),
+                          //           textConverter.iconToCategory(
+                          //               storeService
+                          //                   .selectedStore.category),
+                          //         );
+                          //       },
+                          //       child: Text(
+                          //         //textConverter.textCategory(storeService.selectedStore.category),
+                          //         textConverter.iconToCategory(
+                          //             storeService
+                          //                 .selectedStore.category),
 
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Monserrat',
-                                          fontSize: 17,
-                                          color: Colors.purple[800],
-                                        ),
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          //         textAlign: TextAlign.center,
+                          //         style: TextStyle(
+                          //           fontWeight: FontWeight.bold,
+                          //           fontFamily: 'Monserrat',
+                          //           fontSize: 17,
+                          //           color: Colors.teal[800],
+                          //         ),
+                          //         maxLines: 2,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       )),
                 ],
@@ -161,12 +166,12 @@ class StorePage extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Text(
-              "Conectate con este proyecto!",
+              "Nombre del negocio!",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Monserrat',
                 fontSize: 22,
-                color: Colors.purple[800],
+                color: Colors.teal[800],
               ),
             ),
             content: Column(
@@ -182,7 +187,7 @@ class StorePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Monserrat',
                         fontSize: 18,
-                        color: Colors.purple[800],
+                        color: Colors.teal[800],
                       ),
                     ),
                     SizedBox(width: 15),
@@ -198,7 +203,7 @@ class StorePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Monserrat',
                         fontSize: 18,
-                        color: Colors.purple[800],
+                        color: Colors.teal[800],
                       ),
                     ),
                     SizedBox(width: 15),
@@ -214,7 +219,7 @@ class StorePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Monserrat',
                         fontSize: 18,
-                        color: Colors.purple[800],
+                        color: Colors.teal[800],
                       ),
                     ),
                     SizedBox(width: 15),
@@ -234,7 +239,7 @@ class StorePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Monserrat',
                       fontSize: 18,
-                      color: Colors.purple[800],
+                      color: Colors.teal[800],
                     ),
                   )),
             ],
