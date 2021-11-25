@@ -20,112 +20,133 @@ class HomePage extends StatelessWidget {
     if (storeService.isLoading) return LoadingScreen();
     final List<Stores> lista = storeService.listStores;
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.5,
-        leading: PopupMenuButton<int>(
-            enableFeedback: true,
-            tooltip: 'Lista de categorias',
-            icon: Icon(Icons.menu),
-            onSelected: (item) => onSelected(context, item),
-            itemBuilder: (context) => [
-                  const PopupMenuItem(
-                    value: 1,
-                    child: Text('Restaurantes'),
+    return Stack(
+      children: [
+        // Positioned(
+        //   //height: 300,
+        //   child: (Container(
+        //     decoration: BoxDecoration(
+        //       image: DecorationImage(
+        //         image: AssetImage("assets/Imagen1.png"), // <-- BACKGROUND IMAGE
+        //         fit: BoxFit.cover,
+        //       ),
+        //     ),
+        //   )),
+        // ),
+        Scaffold(
+          //backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            elevation: 0.5,
+            leading: PopupMenuButton<int>(
+                enableFeedback: true,
+                tooltip: 'Lista de categorias',
+                icon: Icon(Icons.menu),
+                onSelected: (item) => onSelected(context, item),
+                itemBuilder: (context) => [
+                      const PopupMenuItem(
+                        value: 1,
+                        child: Text('Restaurantes'),
+                      ),
+                      const PopupMenuItem(
+                        value: 2,
+                        child: Text('Farmacias'),
+                      ),
+                      const PopupMenuItem(
+                        value: 3,
+                        child: Text('Licores'),
+                      ),
+                      const PopupMenuItem(
+                        value: 4,
+                        child: Text('Minimercado'),
+                      ),
+                      const PopupMenuItem(
+                        value: 5,
+                        child: Text('Panaderías'),
+                      ),
+                      const PopupMenuItem(
+                        value: 6,
+                        child: Text('Paseador de perros'),
+                      ),
+                      const PopupMenuItem(
+                        value: 7,
+                        child: Text('Plomería'),
+                      ),
+                      const PopupMenuItem(
+                        value: 8,
+                        child: Text('Cerrajería'),
+                      ),
+                      const PopupMenuItem(
+                        value: 9,
+                        child: Text('Servicios eléctricos'),
+                      ),
+                      const PopupMenuItem(
+                        value: 10,
+                        child: Text('Servicios domésticos'),
+                      ),
+                    ]),
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '20 Cuadras',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monserrat',
+                    fontSize: 25,
+                    color: Colors.teal[800],
                   ),
-                  const PopupMenuItem(
-                    value: 2,
-                    child: Text('Farmacias'),
-                  ),
-                  const PopupMenuItem(
-                    value: 3,
-                    child: Text('Licores'),
-                  ),
-                  const PopupMenuItem(
-                    value: 4,
-                    child: Text('Minimercado'),
-                  ),
-                  const PopupMenuItem(
-                    value: 5,
-                    child: Text('Panaderías'),
-                  ),
-                  const PopupMenuItem(
-                    value: 6,
-                    child: Text('Paseador de perros'),
-                  ),
-                  const PopupMenuItem(
-                    value: 7,
-                    child: Text('Plomería'),
-                  ),
-                  const PopupMenuItem(
-                    value: 8,
-                    child: Text('Cerrajería'),
-                  ),
-                  const PopupMenuItem(
-                    value: 9,
-                    child: Text('Servicios eléctricos'),
-                  ),
-                  const PopupMenuItem(
-                    value: 10,
-                    child: Text('Servicios domésticos'),
-                  ),
-                ]),
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '20 Cuadras',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 25,
-                color: Colors.purple,
-              ),
+                ),
+              ],
             ),
-          ],
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            actions: [
+              IconButton(
+                  tooltip: 'Cerrar sesión',
+                  onPressed: () async {
+                    await meedu.Get.i
+                        .find<AuthenticationRepository>()
+                        .signOut();
+                    router.pushNamedAndRemoveUntil(Routes.LOGIN);
+                  },
+                  icon: Icon(Icons.exit_to_app)),
+            ],
+          ),
+          body: Padding(
+              padding: EdgeInsets.only(bottom: 40),
+              child: Container(
+                child: ListView.builder(
+                    itemCount: storeService.listStores.length,
+                    itemBuilder: (BuildContext context, int index) =>
+                        GestureDetector(
+                          onTap: () {
+                            storeService.selectedStore =
+                                storeService.listStores[index];
+                            Navigator.pushNamed(context, Routes.PROJECT);
+                          },
+                          child: StoreCard(
+                            store: storeService.listStores[index],
+                          ),
+                        )),
+              )),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              storeService.selectedStore = new Stores(
+                  category: 'sdg-es-07.png',
+                  contact: '',
+                  decription: '',
+                  image:
+                      'https://res.cloudinary.com/rinckoar/image/upload/v1637593321/ODS/logoODSxelcambio_lgfctx.png',
+                  name: '',
+                  atribution: 'autor');
+              Navigator.pushNamed(context, Routes.ADDPROJECT);
+            },
+            child: Icon(Icons.add),
+            //backgroundColor: Colors.purple,
+          ),
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-              tooltip: 'Cerrar sesión',
-              onPressed: () async {
-                await meedu.Get.i.find<AuthenticationRepository>().signOut();
-                router.pushNamedAndRemoveUntil(Routes.LOGIN);
-              },
-              icon: Icon(Icons.exit_to_app)),
-        ],
-      ),
-      body: Padding(
-          padding: EdgeInsets.only(bottom: 40),
-          child: ListView.builder(
-              itemCount: storeService.listStores.length,
-              itemBuilder: (BuildContext context, int index) => GestureDetector(
-                    onTap: () {
-                      storeService.selectedStore =
-                          storeService.listStores[index];
-                      Navigator.pushNamed(context, Routes.PROJECT);
-                    },
-                    child: StoreCard(
-                      store: storeService.listStores[index],
-                    ),
-                  ))),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          storeService.selectedStore = new Stores(
-              category: 'sdg-es-07.png',
-              contact: '',
-              decription: '',
-              image:
-                  'https://res.cloudinary.com/rinckoar/image/upload/v1637593321/ODS/logoODSxelcambio_lgfctx.png',
-              name: '',
-              atribution: 'autor');
-          Navigator.pushNamed(context, Routes.ADDPROJECT);
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.purple,
-      ),
+      ],
     );
   }
 }

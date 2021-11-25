@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           //primarySwatch: Colors.,
-          primarySwatch: Colors.deepPurple,
+          primarySwatch: Colors.teal,
           appBarTheme: AppBarTheme(
             color: Colors.white,
-            iconTheme: IconThemeData(color: Colors.purple),
+            iconTheme: IconThemeData(color: Colors.teal[800]),
           )),
       title: 'APP movil 181',
       navigatorKey: router.navigatorKey,

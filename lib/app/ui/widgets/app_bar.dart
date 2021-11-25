@@ -25,7 +25,7 @@ class AppBarGeneral extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontFamily: 'Monserrat',
               fontSize: 25,
-              color: Colors.purple,
+              color: Colors.teal[800],
             ),
           ),
         ],

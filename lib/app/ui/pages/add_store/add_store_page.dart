@@ -71,14 +71,14 @@ class _AddStoreBodyState extends State<AddStoreBody> {
                       children: [
                         SizedBox(height: 10),
                         Title(
-                            color: Colors.purple,
+                            color: Colors.teal,
                             child: Text(
                               'Datos de la tienda',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Monserrat',
                                 fontSize: 20,
-                                color: Colors.purple[800],
+                                color: Colors.teal[800],
                               ),
                             )),
                         _categoria(storeCopied.category, pService),
@@ -130,7 +130,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
               fontWeight: FontWeight.bold,
               fontFamily: 'Monserrat',
               fontSize: 20,
-              color: Colors.purple[800],
+              color: Colors.teal[800],
             ),
           ),
         ),
@@ -186,7 +186,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,7 +220,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,7 +258,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -293,7 +293,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +328,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -363,7 +363,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -398,7 +398,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -427,7 +427,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
                     icon: Icon(
                       Icons.add_a_photo,
                       size: 50,
-                      color: Colors.deepPurple[200],
+                      color: Colors.teal[200],
                     ),
                     onPressed: () async {
                       final ImagePicker picker = new ImagePicker();
@@ -457,7 +457,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
       fontSize: 20,
-      color: Colors.purple[800],
+      color: Colors.teal[800],
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -502,7 +502,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Monserrat',
                   fontSize: 22,
-                  color: Colors.purple[800],
+                  color: Colors.teal[800],
                 )),
             content: Text(
               '¿Estas seguro de crear este proyecto?',
@@ -521,7 +521,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Monserrat',
                       fontSize: 18,
-                      color: Colors.purple[800],
+                      color: Colors.teal[800],
                     ),
                   )),
             ],

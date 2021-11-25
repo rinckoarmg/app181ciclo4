@@ -9,11 +9,11 @@ class StoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 40),
       child: Container(
           margin: EdgeInsets.symmetric(vertical: 10),
           width: double.infinity,
-          height: 150,
+          height: 120,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -28,10 +28,10 @@ class StoreCard extends StatelessWidget {
             children: [
               _CardImage(store.image),
               _StoreDetails(store.name),
+              // Positioned(
+              //     bottom: 0, left: 0, child: _TributeField(store.atribution)),
               Positioned(
-                  bottom: 0, left: 0, child: _TributeField(store.atribution)),
-              Positioned(
-                  bottom: 5, right: 5, child: _CategorieIcon(store.category)),
+                  bottom: 0, right: 0, child: _CategorieIcon(store.category)),
             ],
           )),
     );
@@ -50,7 +50,7 @@ class _CategorieIcon extends StatelessWidget {
         fit: BoxFit.contain,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(40), topLeft: Radius.circular(20)),
+              bottomRight: Radius.circular(60), topRight: Radius.circular(60)),
           child: FadeInImage(
             placeholder: AssetImage('assets/jar-loading.gif'),
             image: AssetImage('assets/${innerImage}'),
@@ -58,12 +58,12 @@ class _CategorieIcon extends StatelessWidget {
           ),
         ),
       ),
-      width: 50,
-      height: 50,
+      width: 60,
+      height: 120,
       decoration: BoxDecoration(
           color: Colors.purple,
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(20), topLeft: Radius.circular(10))),
+              bottomRight: Radius.circular(20), topRight: Radius.circular(20))),
     );
   }
 }
@@ -80,7 +80,7 @@ class _StoreDetails extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           width: double.infinity,
-          height: 40,
+          height: 37,
           decoration: BoxDecoration(
               color: Colors.black38,
               borderRadius: BorderRadius.only(
@@ -93,7 +93,7 @@ class _StoreDetails extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
                 maxLines: 1,
@@ -105,40 +105,40 @@ class _StoreDetails extends StatelessWidget {
   }
 }
 
-class _TributeField extends StatelessWidget {
-  const _TributeField(this.atribution);
-  final String? atribution;
+// class _TributeField extends StatelessWidget {
+//   const _TributeField(this.atribution);
+//   final String? atribution;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 80),
-      child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          height: 30,
-          decoration: BoxDecoration(
-              color: Colors.black12,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  topRight: Radius.circular(20))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '* ' + atribution!,
-                style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          )),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: EdgeInsets.only(right: 80),
+//       child: Container(
+//           padding: EdgeInsets.symmetric(horizontal: 20),
+//           height: 30,
+//           decoration: BoxDecoration(
+//               color: Colors.black12,
+//               borderRadius: BorderRadius.only(
+//                   bottomLeft: Radius.circular(20),
+//                   topRight: Radius.circular(20))),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 '* ' + atribution!,
+//                 style: TextStyle(
+//                     fontSize: 10,
+//                     color: Colors.white,
+//                     fontWeight: FontWeight.bold),
+//                 maxLines: 1,
+//                 overflow: TextOverflow.ellipsis,
+//               ),
+//             ],
+//           )),
+//     );
+//   }
+// }
 
 class _CardImage extends StatelessWidget {
   final String? url;
