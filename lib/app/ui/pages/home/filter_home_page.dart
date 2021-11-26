@@ -78,19 +78,7 @@ class FilterHome extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: Text(
-          name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Monserrat',
-            fontSize: 25,
-          ),
-        ),
-        centerTitle: true,
-        //backgroundColor: Colors.white,
-      ),
+      appBar: AppBarGeneral().appBarG(context),
       body: Padding(
           padding: EdgeInsets.only(bottom: 50),
           child: ListView.builder(

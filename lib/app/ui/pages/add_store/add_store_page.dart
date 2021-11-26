@@ -44,7 +44,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
     final StoreService storeService;
 
     return Scaffold(
-      appBar: AppBarGeneral().appBarG(),
+      appBar: AppBarGeneral().appBarG(context),
       body: SingleChildScrollView(
         child: Container(
             alignment: Alignment.center,

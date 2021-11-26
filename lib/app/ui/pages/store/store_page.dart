@@ -17,7 +17,7 @@ class StorePage extends StatelessWidget {
     final viewInfo = ViewInfoCategory();
 
     return Scaffold(
-      appBar: AppBarGeneral().appBarG(),
+      appBar: AppBarGeneral().appBarG(context),
       body: Stack(children: [
         _backgroungImage(imagen: storeService.selectedStore.image),
         Container(
