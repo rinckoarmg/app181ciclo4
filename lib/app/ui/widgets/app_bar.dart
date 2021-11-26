@@ -22,16 +22,16 @@ class AppBarGeneral extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image(image: AssetImage('assets/logotemp.png'), height: 30),
-          Text(
-            '20 Cuadras',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Monserrat',
-              fontSize: 25,
-              //color: Colors.teal[800],
-            ),
-          ),
+          Image(image: AssetImage('assets/20Cuadras2_b.png'), height: 60),
+          // Text(
+          //   '20 Cuadras',
+          //   style: TextStyle(
+          //     fontWeight: FontWeight.bold,
+          //     fontFamily: 'Monserrat',
+          //     fontSize: 25,
+          //     //color: Colors.teal[800],
+          //   ),
+          // ),
         ],
       ),
       centerTitle: true,
