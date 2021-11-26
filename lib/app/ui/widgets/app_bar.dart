@@ -44,8 +44,9 @@ class AppBarGeneral extends StatelessWidget {
         //   icon: Icon(Icons.add_to_photos),
         // )),
 
-        Container(
+        GestureDetector(
           //margin: EdgeInsets.only(right: 10.0),
+          onTap: () => Navigator.pushNamed(context, Routes.ACCOUNT),
           child: CircleAvatar(
             child: Text('CU'),
             backgroundColor: Colors.teal[100],
