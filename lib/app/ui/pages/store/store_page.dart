@@ -61,7 +61,7 @@ class StorePage extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                                bottom: 30, right: 20, left: 20),
+                                bottom: 10, right: 20, left: 20),
                             child: Text(
                               storeService.selectedStore.decription,
                               textAlign: TextAlign.justify,
@@ -73,62 +73,75 @@ class StorePage extends StatelessWidget {
                               maxLines: 9,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: ProductosSlider(
-                                listP: productService.listProductos,
-                                nombre: 'nombre'),
-                          ),
-                          // Padding(
-                          //   padding: EdgeInsets.symmetric(
-                          //       horizontal: 30, vertical: 20),
-                          //   child: Row(
-                          //     children: [
-                          //       FadeInImage(
-                          //         height: 75,
-                          //         placeholder:
-                          //             AssetImage('assets/jar-loading.gif'),
-                          //         image: AssetImage(
-                          //             'assets/${storeService.selectedStore.category}'),
-                          //       ),
-                          // Expanded(
-                          //   child: Padding(
-                          //     padding:
-                          //         EdgeInsets.symmetric(horizontal: 10),
-                          //     child: TextButton(
-                          //       onPressed: () {
-                          //         viewInfo.viewInfo(
-                          //           context,
-                          //           storeService.selectedStore.category,
-                          //           textConverter.infoCategory(
-                          //               storeService
-                          //                   .selectedStore.category),
-                          //           textConverter.iconToCategory(
-                          //               storeService
-                          //                   .selectedStore.category),
-                          //         );
-                          //       },
-                          //       child: Text(
-                          //         //textConverter.textCategory(storeService.selectedStore.category),
-                          //         textConverter.iconToCategory(
-                          //             storeService
-                          //                 .selectedStore.category),
-
-                          //         textAlign: TextAlign.center,
-                          //         style: TextStyle(
-                          //           fontWeight: FontWeight.bold,
-                          //           fontFamily: 'Monserrat',
-                          //           fontSize: 17,
-                          //           color: Colors.teal[800],
-                          //         ),
-                          //         maxLines: 2,
+                          // Column(
+                          //   children: [
+                          //     Padding(
+                          //       padding: const EdgeInsets.symmetric(
+                          //           horizontal: 20, vertical: 5),
+                          //       child: Row(
+                          //         children: [
+                          //           Text(
+                          //             "Teléfono: ",
+                          //             style: TextStyle(
+                          //               fontWeight: FontWeight.bold,
+                          //               fontFamily: 'Monserrat',
+                          //               fontSize: 18,
+                          //               color: Colors.teal[800],
+                          //             ),
+                          //           ),
+                          //           SizedBox(width: 20),
+                          //           Text(storeService.selectedStore.contact),
+                          //         ],
                           //       ),
                           //     ),
-                          //   ),
+                          //     Padding(
+                          //       padding: const EdgeInsets.symmetric(
+                          //           horizontal: 20, vertical: 5),
+                          //       child: Row(
+                          //         children: [
+                          //           Text(
+                          //             "Dirección: ",
+                          //             style: TextStyle(
+                          //               fontWeight: FontWeight.bold,
+                          //               fontFamily: 'Monserrat',
+                          //               fontSize: 18,
+                          //               color: Colors.teal[800],
+                          //             ),
+                          //           ),
+                          //           SizedBox(width: 20),
+                          //           Text(storeService.selectedStore.address!),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     Padding(
+                          //       padding: const EdgeInsets.symmetric(
+                          //           horizontal: 20, vertical: 5),
+                          //       child: Row(
+                          //         children: [
+                          //           Text(
+                          //             "Web: ",
+                          //             style: TextStyle(
+                          //               fontWeight: FontWeight.bold,
+                          //               fontFamily: 'Monserrat',
+                          //               fontSize: 18,
+                          //               color: Colors.teal[800],
+                          //             ),
+                          //           ),
+                          //           SizedBox(width: 20),
+                          //           Text(storeService.selectedStore.web!),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ],
                           // ),
-                          //     ],
-                          //   ),
-                          // ),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ProductosSlider(
+                                listP: productService.listProductos,
+                                nombre: 'Productos'),
+                          ),
+                          SizedBox(height: 10),
                         ],
                       )),
                 ],
@@ -151,7 +164,7 @@ class StorePage extends StatelessWidget {
               onPressed: () => _viewContact(
                   context,
                   storeService.selectedStore.contact,
-                  storeService.selectedStore.email,
+                  storeService.selectedStore.address,
                   storeService.selectedStore.web),
               child: Icon(Icons.contact_mail)),
         ],
@@ -159,7 +172,8 @@ class StorePage extends StatelessWidget {
     );
   }
 
-  _viewContact(BuildContext context, String? tel, String? email, String? web) {
+  _viewContact(
+      BuildContext context, String? tel, String? direccion, String? web) {
     showDialog(
         context: context,
         //para cerrar la alerta haciendo click afuera:
@@ -169,7 +183,7 @@ class StorePage extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Text(
-              "Nombre del negocio!",
+              "Contáctanos!",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Monserrat',
@@ -201,7 +215,7 @@ class StorePage extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Email: ",
+                      "Dirección: ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Monserrat',
@@ -210,7 +224,7 @@ class StorePage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 15),
-                    Text(email!),
+                    Text(direccion!),
                   ],
                 ),
                 SizedBox(height: 15),

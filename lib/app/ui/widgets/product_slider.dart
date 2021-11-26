@@ -13,23 +13,23 @@ class ProductosSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 200,
+      height: 240,
       //color: Colors.blueAccent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 20),
-          //     child: Text(
-          //       tituloProducto,
-          //       style: TextStyle(
-          //         fontWeight: FontWeight.bold,
-          //         fontFamily: 'Monserrat',
-          //         fontSize: 24,
-          //         color: Colors.teal[800],
-          //       ),
-          //     )),
-          //SizedBox(height: 5),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                nombre,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Monserrat',
+                  fontSize: 24,
+                  color: Colors.teal[800],
+                ),
+              )),
+          SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -39,6 +39,7 @@ class ProductosSlider extends StatelessWidget {
                   return _ImagenProducto(categ.imagen, categ.nombre);
                 }),
           ),
+          SizedBox(height: 10)
         ],
       ),
     );
@@ -54,10 +55,10 @@ class _ImagenProducto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
-      height: 180,
+      width: 140,
+      height: 140,
       //color: Colors.green,
-      //margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -71,7 +72,7 @@ class _ImagenProducto extends StatelessWidget {
                   image: NetworkImage(url)),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Text(
             title!,
             maxLines: 1,
