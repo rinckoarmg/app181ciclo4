@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:movil181/app/domain/models/models.dart';
 
-class ProductCard extends StatelessWidget {
-  final Productos product;
+class OrdersCard extends StatelessWidget {
+  final Orders order;
 
-  const ProductCard({Key? key, required this.product}) : super(key: key);
+  const OrdersCard({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 40),
       child: Container(
@@ -26,10 +28,35 @@ class ProductCard extends StatelessWidget {
               ]),
           child: Stack(
             children: [
-              _CardImage(product.imagen),
-              _ProductDetails(product.nombre),
-              // Positioned(
-              //     bottom: 0, left: 0, child: _TributeField(store.atribution)),
+              _ProductDetails(order),
+              Positioned(
+                  bottom: 45,
+                  left: 40,
+                  child: Row(
+                    children: [
+                      Text('Tienda: ', style: textTheme.headline5),
+                      Text(
+                        order.tienda,
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black54,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  )),
+              Positioned(
+                  bottom: 10,
+                  left: 40,
+                  child: Row(
+                    children: [
+                      Text('Total: \$ ', style: textTheme.headline4),
+                      Text(order.precio.toString(),
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold)),
+                    ],
+                  )),
             ],
           )),
     );
@@ -67,20 +94,20 @@ class ProductCard extends StatelessWidget {
 // }
 
 class _ProductDetails extends StatelessWidget {
-  final String title;
+  final Orders order;
 
-  const _ProductDetails(this.title);
+  const _ProductDetails(this.order);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 50),
+      padding: EdgeInsets.only(right: 70),
       child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           width: double.infinity,
           height: 37,
           decoration: BoxDecoration(
-              color: Colors.black38,
+              color: Colors.teal[300],
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),
                   topLeft: Radius.circular(20))),
@@ -89,9 +116,9 @@ class _ProductDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                order.referencia,
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
                 maxLines: 1,
@@ -99,64 +126,6 @@ class _ProductDetails extends StatelessWidget {
               ),
             ],
           )),
-    );
-  }
-}
-
-// class _TributeField extends StatelessWidget {
-//   const _TributeField(this.atribution);
-//   final String? atribution;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.only(right: 80),
-//       child: Container(
-//           padding: EdgeInsets.symmetric(horizontal: 20),
-//           height: 30,
-//           decoration: BoxDecoration(
-//               color: Colors.black12,
-//               borderRadius: BorderRadius.only(
-//                   bottomLeft: Radius.circular(20),
-//                   topRight: Radius.circular(20))),
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(
-//                 '* ' + atribution!,
-//                 style: TextStyle(
-//                     fontSize: 10,
-//                     color: Colors.white,
-//                     fontWeight: FontWeight.bold),
-//                 maxLines: 1,
-//                 overflow: TextOverflow.ellipsis,
-//               ),
-//             ],
-//           )),
-//     );
-//   }
-// }
-
-class _CardImage extends StatelessWidget {
-  final String? url;
-
-  const _CardImage(this.url);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        width: double.infinity,
-        child: url == null
-            ? Image(image: AssetImage('assets/no-image.png'), fit: BoxFit.cover)
-            : FadeInImage(
-                placeholder: AssetImage('assets/jar-loading.gif'),
-                image: NetworkImage(url!),
-                fit: BoxFit.cover,
-              ),
-      ),
     );
   }
 }

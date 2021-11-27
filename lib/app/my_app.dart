@@ -14,6 +14,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => StoreService()),
         ChangeNotifierProvider(create: (_) => ProductService()),
+        ChangeNotifierProvider(create: (_) => OrderService()),
       ],
       child: MyApp(),
     );
@@ -27,6 +28,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          textTheme: TextTheme(
+            button: TextStyle(fontSize: 30),
+            headline6: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Monserrat',
+                fontSize: 18,
+                color: Colors.teal[800]),
+            headline5: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Monserrat',
+                fontSize: 22,
+                color: Colors.teal[800]),
+            headline4: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Monserrat',
+                fontSize: 24,
+                color: Colors.teal[800]),
+            bodyText1: TextStyle(
+              fontFamily: 'Monserrat',
+              fontSize: 15,
+              color: Colors.black54,
+            ),
+          ),
           //primarySwatch: Colors.,
           primarySwatch: Colors.teal,
           appBarTheme: AppBarTheme(
