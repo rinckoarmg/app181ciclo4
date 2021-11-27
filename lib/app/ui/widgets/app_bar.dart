@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:movil181/app/domain/repositories/authentication_repository.dart';
@@ -78,146 +75,179 @@ class AppBarGeneral extends StatelessWidget {
         icon: const Icon(Icons.menu),
         onSelected: (item) => onSelected(context, item, tituloCategoria),
         itemBuilder: (context) => [
-          PopupMenuItem(
-            value: 1,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[0]}'), height: 40)
+              PopupMenuItem(
+                value: 1,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[0]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[0],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[0], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 2,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[1]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 2,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[1]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[1],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[1], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 3,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[2]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 3,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[2]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[2],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[2], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 4,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[3]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 4,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[3]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[3],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[3], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 5,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[4]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 5,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[4]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[4],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[4], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuDivider(),
-          PopupMenuItem(
-            value: 6,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[5]}'), height: 40)
+              ),
+              PopupMenuDivider(),
+              PopupMenuItem(
+                value: 6,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[5]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[5],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[5], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 7,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[6]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 7,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[6]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[6],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[6], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 8,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[7]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 8,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[7]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[7],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[7], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 9,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[8]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 9,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[8]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(tituloCategoria.listCategories()[8],
+                        style: TextStyle(color: Colors.grey[700])),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[8], style: TextStyle(color: Colors.grey[700])),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: 10,
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(image: AssetImage('assets/${tituloCategoria.listIconsSquare()[9]}'), height: 40)
+              ),
+              PopupMenuItem(
+                value: 10,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                            image: AssetImage(
+                                'assets/${tituloCategoria.listIconsSquare()[9]}'),
+                            height: 40)),
+                    const SizedBox(width: 15),
+                    Text(
+                      tituloCategoria.listCategories()[9],
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 15),
-                Text(tituloCategoria.listCategories()[9], style: TextStyle(color: Colors.grey[700]),),
-              ],
-            ),
-          ),
-        ]);
+              ),
+            ]);
   }
 }
 
 void onSelected(BuildContext context, int item, Listas tituloCategoria) {
-  for (int y=0; y<tituloCategoria.listCategories(). length;y++) {
-    if (item == y+1) {
+  for (int y = 0; y < tituloCategoria.listCategories().length; y++) {
+    if (item == y + 1) {
       Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FilterHome(lista: y+1, name: tituloCategoria.listCategories()[y])));
+          builder: (context) => FilterHome(
+              lista: y + 1, name: tituloCategoria.listCategories()[y])));
     }
   }
   /*
