@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movil181/app/data/data_source/remote/product_service.dart';
 import 'package:movil181/app/data/data_source/remote/project_service.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
-import 'package:movil181/app/ui/widgets/product_slider.dart';
-import 'package:movil181/app/ui/widgets/text_converter.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 

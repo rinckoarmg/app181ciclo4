@@ -6,8 +6,8 @@ class Listas extends StatelessWidget {
     return Container();
   }
 
-  List<String> listIcons() {
-    List<String> listIcons = [
+  List<String> listIconsLong() {
+    List<String> listIconsLong = [
       'Restaurantes.png',
       'Farmacias.png',
       'Licores.png',
@@ -19,7 +19,23 @@ class Listas extends StatelessWidget {
       'Electricos.png',
       'Domesticos.png'
     ];
-    return listIcons;
+    return listIconsLong;
+  }
+
+  List<String> listIconsSquare() {
+    List<String> listIconsSquare = [
+      'Restaurantes1.png',
+      'Farmacias1.png',
+      'Licores1.png',
+      'Minimercado1.png',
+      'Panaderias1.png',
+      'Paseador1.png',
+      'Plomeria1.png',
+      'Cerrajeria1.png',
+      'Electricos1.png',
+      'Domesticos1.png'
+    ];
+    return listIconsSquare;
   }
 
   List<String> listCategories() {
