@@ -4,7 +4,7 @@
 
    <application
         android:usesCleartextTraffic="true"
-        android:label="ODS Por el Cambio"
+        android:label="20 Cuadras"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
