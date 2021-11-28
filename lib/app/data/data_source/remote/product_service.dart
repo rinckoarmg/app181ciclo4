@@ -89,7 +89,7 @@ class ProductService extends ChangeNotifier {
     notifyListeners();
 
     final url = Uri.parse(
-        'https://api.cloudinary.com/v1_1/rinckoar/image/upload?upload_preset=odsxcambio');
+        'https://api.cloudinary.com/v1_1/rinckoar/image/upload?upload_preset=20Cuadras');
 
     final imageUploadRequest = http.MultipartRequest('POST', url);
     final file = await http.MultipartFile.fromPath('file', newPhoto!.path);

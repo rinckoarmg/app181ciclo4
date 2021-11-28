@@ -17,7 +17,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
   Future<User?> get user async {
     await _completer.future;
-    return user;
+    return _user;
   }
 
   void _init() {
@@ -25,7 +25,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       if (!_completer.isCompleted) {
         _completer.complete();
       }
-      user = user;
+      _user = user;
     });
   }
 

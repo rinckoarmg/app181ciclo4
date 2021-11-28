@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                   contact: '',
                   decription: '',
                   image:
-                      'https://res.cloudinary.com/rinckoar/image/upload/v1637593321/ODS/logoODSxelcambio_lgfctx.png',
+                      'https://res.cloudinary.com/rinckoar/image/upload/v1638138172/20Cuadras/20_Cuadras2_b_lnqxkr.png',
                   name: '',
                   atribution: 'autor');
               Navigator.pushNamed(context, Routes.ADDPROJECT);
@@ -73,4 +73,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
