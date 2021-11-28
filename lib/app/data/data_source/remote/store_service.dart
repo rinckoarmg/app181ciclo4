@@ -3,27 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:movil181/app/domain/models/models.dart';
+import 'package:movil181/app/ui/widgets/widgets.dart';
 
 class StoreService extends ChangeNotifier {
   final String _baseUrl = 'mi-barrio-177fd-default-rtdb.firebaseio.com';
+  final List listaGeneral = [
+    [],[],[],[],[],[],[],[],[],[],[]
+  ];
+  
   final List<Stores> listStores = [];
-  final List<Stores> list1 = [];
-  final List<Stores> list2 = [];
-  final List<Stores> list3 = [];
-  final List<Stores> list4 = [];
-  final List<Stores> list5 = [];
-  final List<Stores> list6 = [];
-  final List<Stores> list7 = [];
-  final List<Stores> list8 = [];
-  final List<Stores> list9 = [];
-  final List<Stores> list10 = [];
-  final List<Stores> list11 = [];
-  final List<Stores> list12 = [];
-  final List<Stores> list13 = [];
-  final List<Stores> list14 = [];
-  final List<Stores> list15 = [];
-  final List<Stores> list16 = [];
-  final List<Stores> list17 = [];
   final List<Stores> listProductos = [];
   final List<Stores> listServicios = [];
 
@@ -49,50 +37,27 @@ class StoreService extends ChangeNotifier {
       final tempStores = Stores.fromMap(value);
       tempStores.id = key;
       listStores.add(tempStores);
-      if (tempStores.category == 'Restaurantes.png' ||
-          tempStores.category == 'Farmacias.png' ||
-          tempStores.category == 'Licores.png' ||
-          tempStores.category == 'Minimercado.png' ||
-          tempStores.category == 'Panaderias.png') {
+      Listas listas = Listas();
+
+      if (tempStores.category == listas.listIconsLong()[0] ||
+          tempStores.category == listas.listIconsLong()[1] ||
+          tempStores.category == listas.listIconsLong()[2] ||
+          tempStores.category == listas.listIconsLong()[3] ||
+          tempStores.category == listas.listIconsLong()[4]) {
         listProductos.add(tempStores);
       }
-      if (tempStores.category == 'Paseador.png' ||
-          tempStores.category == 'Plomeria.png' ||
-          tempStores.category == 'Cerrajeria.png' ||
-          tempStores.category == 'Electricos.png' ||
-          tempStores.category == 'Domesticos.png') {
+      if (tempStores.category == listas.listIconsLong()[5] ||
+          tempStores.category == listas.listIconsLong()[6] ||
+          tempStores.category == listas.listIconsLong()[7] ||
+          tempStores.category == listas.listIconsLong()[8] ||
+          tempStores.category == listas.listIconsLong()[9]) {
         listServicios.add(tempStores);
       }
 
-      if (tempStores.category == 'Restaurantes.png') {
-        list1.add(tempStores);
-      }
-      if (tempStores.category == 'Farmacias.png') {
-        list2.add(tempStores);
-      }
-      if (tempStores.category == 'Licores.png') {
-        list3.add(tempStores);
-      }
-      if (tempStores.category == 'Minimercado.png') {
-        list4.add(tempStores);
-      }
-      if (tempStores.category == 'Panaderias.png') {
-        list5.add(tempStores);
-      }
-      if (tempStores.category == 'Paseador.png') {
-        list6.add(tempStores);
-      }
-      if (tempStores.category == 'Plomeria.png') {
-        list7.add(tempStores);
-      }
-      if (tempStores.category == 'Cerrajeria.png') {
-        list8.add(tempStores);
-      }
-      if (tempStores.category == 'Electricos.png') {
-        list9.add(tempStores);
-      }
-      if (tempStores.category == 'Domesticos.png') {
-        list10.add(tempStores);
+      for (int i=0;i<listas.listIconsLong().length;i++) {
+        if (tempStores.category == listas.listIconsLong()[i]) {
+        listaGeneral[i].add(tempStores);
+        }
       }
     });
 

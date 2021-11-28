@@ -17,7 +17,7 @@ class Listas extends StatelessWidget {
       'Plomeria.png',
       'Cerrajeria.png',
       'Electricos.png',
-      'Domesticos.png'
+      'Domesticos.png',
     ];
     return listIconsLong;
   }
@@ -49,7 +49,8 @@ class Listas extends StatelessWidget {
       'Plomería',
       'Cerrajería',
       'Servicios eléctricos',
-      'Servicios domésticos'
+      'Servicios domésticos',
+      'Todas las Categorias'
     ];
     return listCategories;
   }
