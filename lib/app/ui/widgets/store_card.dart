@@ -9,7 +9,7 @@ class StoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 40),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: Container(
           margin: EdgeInsets.symmetric(vertical: 10),
           width: double.infinity,
@@ -46,19 +46,16 @@ class _CategorieIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FittedBox(
-        fit: BoxFit.contain,
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(60), topRight: Radius.circular(60)),
-          child: FadeInImage(
-            placeholder: AssetImage('assets/jar-loading.gif'),
-            image: AssetImage('assets/${innerImage}'),
-            fit: BoxFit.cover,
-          ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20), topRight: Radius.circular(20)),
+        child: FadeInImage(
+          placeholder: AssetImage('assets/jar-loading.gif'),
+          image: AssetImage('assets/${innerImage}'),
+          fit: BoxFit.cover,
         ),
       ),
-      width: 60,
+      width: 55,
       height: 120,
       decoration: BoxDecoration(
           color: Colors.purple,
@@ -76,13 +73,13 @@ class _StoreDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 50),
+      padding: EdgeInsets.only(right: 100),
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           width: double.infinity,
-          height: 37,
+          height: 40,
           decoration: BoxDecoration(
-              color: Colors.black38,
+              color: Colors.black26,
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),
                   topLeft: Radius.circular(20))),
@@ -101,6 +98,32 @@ class _StoreDetails extends StatelessWidget {
               ),
             ],
           )),
+    );
+  }
+}
+
+class _CardImage extends StatelessWidget {
+  final String? url;
+
+  const _CardImage(this.url);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: 55),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
+        child: Container(
+          width: double.infinity,
+          child: url == null
+              ? Image(image: AssetImage('assets/no-image.png'), fit: BoxFit.cover)
+              : FadeInImage(
+                  placeholder: AssetImage('assets/jar-loading.gif'),
+                  image: NetworkImage(url!),
+                  fit: BoxFit.cover,
+                ),
+        ),
+      ),
     );
   }
 }
@@ -140,25 +163,3 @@ class _StoreDetails extends StatelessWidget {
 //   }
 // }
 
-class _CardImage extends StatelessWidget {
-  final String? url;
-
-  const _CardImage(this.url);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        width: double.infinity,
-        child: url == null
-            ? Image(image: AssetImage('assets/no-image.png'), fit: BoxFit.cover)
-            : FadeInImage(
-                placeholder: AssetImage('assets/jar-loading.gif'),
-                image: NetworkImage(url!),
-                fit: BoxFit.cover,
-              ),
-      ),
-    );
-  }
-}
