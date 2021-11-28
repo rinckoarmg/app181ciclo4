@@ -1,18 +1,23 @@
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:movil181/app/data/data_source/remote/services.dart';
-import 'package:movil181/app/domain/models/order_model.dart';
+import 'package:movil181/app/domain/repositories/authentication_repository.dart';
+import 'package:movil181/app/ui/routes/routes.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' as prov;
+
+import 'package:flutter_meedu/flutter_meedu.dart';
+import 'package:flutter_meedu/router.dart' as router;
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final user = User;
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final orderService = Provider.of<OrderService>(context);
-    final storeService = Provider.of<StoreService>(context);
+    final orderService = prov.Provider.of<OrderService>(context);
+    final storeService = prov.Provider.of<StoreService>(context);
     return Scaffold(
       appBar: AppBarGeneral().appBarG(context),
       body: SingleChildScrollView(
@@ -103,14 +108,29 @@ class AccountPage extends StatelessWidget {
                 height: 10,
               ),
               ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: storeService.listStores.length,
-                itemBuilder: (_, int index) =>
-                    UserStoreCard(uStore: storeService.listStores[index]),
-                //InfoPedido(order: orderService.listOrder[index]),
-              ),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: storeService.listStores.length,
+                  itemBuilder: (_, int index) => GestureDetector(
+                        onTap: () {
+                          storeService.selectedStore =
+                              storeService.listStores[index];
+                          Navigator.pushNamed(context, Routes.ADDPROJECT);
+                        },
+                        child: UserStoreCard(
+                            uStore: storeService.listStores[index]),
+                      )
+                  //UserStoreCard(uStore: storeService.listStores[index]),
+                  //InfoPedido(order: orderService.listOrder[index]),
+                  ),
             ]),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Get.i.find<AuthenticationRepository>().signOut();
+          router.pushNamedAndRemoveUntil(Routes.LOGIN);
+        },
+        child: Icon(Icons.exit_to_app_rounded),
       ),
     );
   }
