@@ -7,10 +7,6 @@ import 'package:movil181/app/ui/routes/routes.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_meedu/flutter_meedu.dart' as meedu;
-import 'package:movil181/app/domain/repositories/authentication_repository.dart';
-import 'package:flutter_meedu/router.dart' as router;
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 

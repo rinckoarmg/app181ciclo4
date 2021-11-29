@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:movil181/app/data/data_source/remote/product_service.dart';
 import 'package:movil181/app/data/data_source/remote/services.dart';
 import 'package:movil181/app/domain/models/models.dart';
 import 'package:movil181/app/domain/repositories/authentication_repository.dart';
@@ -20,6 +21,7 @@ class AccountPage extends StatelessWidget {
 
     final orderService = prov.Provider.of<OrderService>(context);
     final storeService = prov.Provider.of<StoreService>(context);
+    final productService = prov.Provider.of<ProductService>(context);
     return Scaffold(
       appBar: AppBarGeneral().appBarG(context),
       body: SingleChildScrollView(
@@ -111,6 +113,29 @@ class AccountPage extends StatelessWidget {
                     },
                     child:
                         UserStoreCard(uStore: storeService.listStores[index]),
+                  )
+              //UserStoreCard(uStore: storeService.listStores[index]),
+              //InfoPedido(order: orderService.listOrder[index]),
+              ),
+          SizedBox(
+            height: 10,
+          ),
+          Text('Mis productos', style: textTheme.headline4),
+          SizedBox(
+            height: 10,
+          ),
+          ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: productService.listProductos.length,
+              itemBuilder: (_, int index) => GestureDetector(
+                    onTap: () {
+                      productService.selectedProduct =
+                          productService.listProductos[index];
+                      Navigator.pushNamed(context, Routes.ADDPROJECT);
+                    },
+                    child: UserProductCard(
+                        uProduct: productService.listProductos[index]),
                   )
               //UserStoreCard(uStore: storeService.listStores[index]),
               //InfoPedido(order: orderService.listOrder[index]),
