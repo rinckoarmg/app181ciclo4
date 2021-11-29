@@ -18,7 +18,7 @@ class ProductosSlider extends StatelessWidget {
       height: 240,
       //color: Colors.blueAccent,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -60,8 +60,8 @@ class _ImagenProducto extends StatelessWidget {
   Widget build(BuildContext context) {
     final productService = Provider.of<ProductService>(context);
     return Container(
-      width: 140,
-      height: 140,
+      //width: 140,
+      //height: 140,
       //color: Colors.green,
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Column(
@@ -72,11 +72,16 @@ class _ImagenProducto extends StatelessWidget {
               Navigator.pushNamed(context, Routes.PRODUCT,
                   arguments: productService.selectedProduct = listP);
             },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                  placeholder: AssetImage('assets/no-image.png'),
-                  image: NetworkImage(url)),
+            child: Container(
+              height: 140,
+              width: 140,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FadeInImage(
+                  fit: BoxFit.cover,
+                    placeholder: AssetImage('assets/no-image.png'),
+                    image: NetworkImage(url)),
+              ),
             ),
           ),
           SizedBox(height: 10),
