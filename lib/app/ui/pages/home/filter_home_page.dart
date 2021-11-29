@@ -72,7 +72,7 @@ class FilterHome extends StatelessWidget {
     showDialog(
         context: context,
         //para cerrar la alerta haciendo click afuera:
-        barrierDismissible: false,
+        barrierDismissible: true,
         builder: (context) {
           return AlertDialog(
             scrollable: true,

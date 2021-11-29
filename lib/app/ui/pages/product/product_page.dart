@@ -4,8 +4,16 @@ import 'package:movil181/app/ui/routes/routes.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
+
+  @override
+  _ProductPageState createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {  
+  int _cont = 0;
+  
   @override
   Widget build(BuildContext context) {
     final productService = Provider.of<ProductService>(context);
@@ -19,7 +27,7 @@ class ProductPage extends StatelessWidget {
         Container(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, bottom: 80),
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 40),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -69,6 +77,67 @@ class ProductPage extends StatelessWidget {
                               maxLines: 7,
                             ),
                           ),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: Text(
+                                'Precio/unidad: \$${productService.selectedProduct.precio}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Monserrat',
+                                  fontSize: 20,
+                                  color: Colors.teal[800],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: Text(
+                                'Unidades:',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Monserrat',
+                                  fontSize: 24,
+                                  color: Colors.teal[800],
+                                ),
+                              ),
+                            ),
+                          ),
+                          
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              FloatingActionButton(mini: true, onPressed: _sustraer, child: Icon(Icons.remove), heroTag: 'btn1'),
+                              SizedBox(width: 20),
+                              Text('$_cont', style: TextStyle(fontSize: 45)),
+                              SizedBox(width: 20),
+                              FloatingActionButton(mini: true ,onPressed: _agregar, child: Icon(Icons.add), heroTag: 'btn2'),
+                            ],
+                          ),
+                          
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: Text(
+                                'Precio Final: \$${(productService.selectedProduct.precio)*_cont}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Monserrat',
+                                  fontSize: 24,
+                                  color: Colors.teal[800],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          //TODO:llevar la orden del pedido
+                          Center(child: ElevatedButton(onPressed: (){}, child: Text('Hacer pedido',style: TextStyle(fontSize: 20),))),
+                          SizedBox(height: 20),
                         ],
                       )),
                 ],
@@ -78,7 +147,17 @@ class ProductPage extends StatelessWidget {
     );
   }
 
+  void _agregar(){
+    setState(() => _cont++ ); //<-este sirve para que se redibuje el widget
+  }
+
+  void _sustraer(){
+    if (_cont >= 1) {
+      setState(() => _cont--);  
+    }
+  }
 }
+
 
 class _BackgroungImage extends StatelessWidget {
   final String? imagen;
