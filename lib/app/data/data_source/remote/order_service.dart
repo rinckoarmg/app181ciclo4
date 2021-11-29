@@ -22,21 +22,18 @@ class OrderService extends ChangeNotifier {
     final url = Uri.https(_baseUrl, '/pedidos.json');
     final resp = await http.get(url);
     final Map<String, dynamic> orderMap = json.decode(resp.body);
-    print(orderMap);
+    //print(orderMap);
 
     orderMap.forEach((key, value) {
-      print(value);
       final tempOrder = Orders.fromMap(value);
       tempOrder.referencia = key;
-      print(tempOrder.pedido);
+
       listOrder.add(tempOrder);
     });
-    print(listOrder);
 
     isLoading = false;
     notifyListeners();
 
-    //print(listOrder);
     return listOrder;
   }
 

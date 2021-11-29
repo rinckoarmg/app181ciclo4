@@ -32,10 +32,9 @@ class RegisterPage extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       FadeInImage(
-                        placeholder: AssetImage('assets/jar-loading.gif'),
-                        width: 220,
-                        image: AssetImage('assets/ODS 17 Alianza para lograr los Objetivos-1.png')
-                      ),
+                          placeholder: AssetImage('assets/jar-loading.gif'),
+                          width: 220,
+                          image: AssetImage('assets/20Cuadras2_b.png')),
                       Text(
                         "Registro",
                         textAlign: TextAlign.start,
@@ -142,9 +141,10 @@ class RegisterPage extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                  Icon(Icons.copyright),
-                                  Text('  Desarrollado por DevTeam 181.')
-                                ],)  
+                                    Icon(Icons.copyright),
+                                    Text('  Desarrollado por DevTeam 181.')
+                                  ],
+                                )
                               ],
                             ),
                           ],
