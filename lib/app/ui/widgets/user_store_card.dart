@@ -33,19 +33,12 @@ class UserStoreCard extends StatelessWidget {
             children: [
               _StoreDetails(uStore),
               Positioned(
-                  top: 0,
-                  right: 10,
+                  top: 10,
+                  right: 20,
                   child: Row(
                     children: [
-                      TextButton.icon(
-                        onPressed: () {
-                          storeService.selectedStore;
-                          Navigator.pushNamed(context, Routes.ADDPROJECT);
-                        },
-                        icon: Icon(Icons.edit),
-                        label: Text('Editar', style: textTheme.headline5),
-                        // child: Text('Editar', style: textTheme.headline5),
-                      )
+                      Icon(Icons.edit, color: Colors.teal),
+                      Text('Editar', style: textTheme.headline5),
                     ],
                   )),
             ],

@@ -7,10 +7,8 @@ import 'package:movil181/app/ui/widgets/widgets.dart';
 
 class StoreService extends ChangeNotifier {
   final String _baseUrl = 'mi-barrio-177fd-default-rtdb.firebaseio.com';
-  final List listaGeneral = [
-    [],[],[],[],[],[],[],[],[],[],[]
-  ];
-  
+  final List listaGeneral = [[], [], [], [], [], [], [], [], [], [], []];
+
   final List<Stores> listStores = [];
   final List<Stores> listProductos = [];
   final List<Stores> listServicios = [];
@@ -54,9 +52,9 @@ class StoreService extends ChangeNotifier {
         listServicios.add(tempStores);
       }
 
-      for (int i=0;i<listas.listIconsLong().length;i++) {
+      for (int i = 0; i < listas.listIconsLong().length; i++) {
         if (tempStores.category == listas.listIconsLong()[i]) {
-        listaGeneral[i].add(tempStores);
+          listaGeneral[i].add(tempStores);
         }
       }
     });
@@ -117,7 +115,7 @@ class StoreService extends ChangeNotifier {
     notifyListeners();
 
     final url = Uri.parse(
-        'https://api.cloudinary.com/v1_1/rinckoar/image/upload?upload_preset=odsxcambio');
+        'https://api.cloudinary.com/v1_1/rinckoar/image/upload?upload_preset=20Cuadras');
 
     final imageUploadRequest = http.MultipartRequest('POST', url);
     final file = await http.MultipartFile.fromPath('file', newPhoto!.path);

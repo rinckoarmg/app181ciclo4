@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Monserrat',
                               fontSize: 25,
-                              color: Colors.deepPurple,
+                              color: Colors.teal,
                             ),
                           ),
                         ],
@@ -124,10 +124,10 @@ class LoginPage extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                            Icon(Icons.copyright),
-                            Text('  Desarrollado por DevTeam 181.')
-                          ],)
-                          
+                              Icon(Icons.copyright),
+                              Text('  Desarrollado por DevTeam 181.')
+                            ],
+                          )
                         ],
                       ),
                     ],
