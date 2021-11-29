@@ -50,7 +50,7 @@ class Listas extends StatelessWidget {
       'Cerrajería',
       'Servicios eléctricos',
       'Servicios domésticos',
-      'Todas las Categorias'
+      'Todas las categorías'
     ];
     return listCategories;
   }

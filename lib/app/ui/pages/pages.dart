@@ -1,0 +1,10 @@
+export 'package:movil181/app/ui/pages/account/account_page.dart';
+export 'package:movil181/app/ui/pages/add_store/add_store_page.dart';
+export 'package:movil181/app/ui/pages/home/filter_home_page.dart';
+export 'package:movil181/app/ui/pages/home/home_page.dart';
+export 'package:movil181/app/ui/pages/loading_screen/loading_screen_page.dart';
+export 'package:movil181/app/ui/pages/login/login_page.dart';
+export 'package:movil181/app/ui/pages/product/product_page.dart';
+export 'package:movil181/app/ui/pages/register/register_page.dart';
+export 'package:movil181/app/ui/pages/splash/splash_page.dart';
+export 'package:movil181/app/ui/pages/store/store_page.dart';

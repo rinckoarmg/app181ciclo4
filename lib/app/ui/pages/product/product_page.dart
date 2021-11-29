@@ -15,7 +15,7 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarGeneral().appBarG(context),
       body: Stack(children: [
-        _backgroungImage(imagen: productService.selectedProduct.imagen),
+        _BackgroungImage(imagen: productService.selectedProduct.imagen),
         Container(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -66,185 +66,24 @@ class ProductPage extends StatelessWidget {
                                 fontSize: 15,
                                 color: Colors.black54,
                               ),
-                              maxLines: 9,
+                              maxLines: 7,
                             ),
                           ),
-                          // Padding(
-                          //   padding: EdgeInsets.symmetric(
-                          //       horizontal: 30, vertical: 20),
-                          //   child: Row(
-                          //     children: [
-                          //       FadeInImage(
-                          //         height: 75,
-                          //         placeholder:
-                          //             AssetImage('assets/jar-loading.gif'),
-                          //         image: AssetImage(
-                          //             'assets/${productService.selectedProduct.category}'),
-                          //       ),
-                          // Expanded(
-                          //   child: Padding(
-                          //     padding:
-                          //         EdgeInsets.symmetric(horizontal: 10),
-                          //     child: TextButton(
-                          //       onPressed: () {
-                          //         viewInfo.viewInfo(
-                          //           context,
-                          //           productService.selectedProduct.category,
-                          //           textConverter.infoCategory(
-                          //               productService
-                          //                   .selectedProduct.category),
-                          //           textConverter.iconToCategory(
-                          //               productService
-                          //                   .selectedProduct.category),
-                          //         );
-                          //       },
-                          //       child: Text(
-                          //         //textConverter.textCategory(productService.selectedProduct.category),
-                          //         textConverter.iconToCategory(
-                          //             productService
-                          //                 .selectedProduct.category),
-
-                          //         textAlign: TextAlign.center,
-                          //         style: TextStyle(
-                          //           fontWeight: FontWeight.bold,
-                          //           fontFamily: 'Monserrat',
-                          //           fontSize: 17,
-                          //           color: Colors.teal[800],
-                          //         ),
-                          //         maxLines: 2,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       )),
                 ],
               ),
             )),
       ]),
-      // floatingActionButton: Row(
-      //   children: <Widget>[
-      //     SizedBox(width: 30),
-      //     FloatingActionButton(
-      //         heroTag: 'btn1',
-      //         onPressed: () {
-      //           productService.selectedProduct;
-      //           Navigator.pushNamed(context, Routes.ADDPROJECT);
-      //         },
-      //         child: Icon(Icons.edit)),
-      //     Expanded(child: SizedBox()),
-      //     FloatingActionButton(
-      //         heroTag: 'btn2',
-      //         onPressed: () => _viewContact(
-      //             context,
-      //             productService.selectedProduct.contact,
-      //             productService.selectedProduct.email,
-      //             productService.selectedProduct.web),
-      //         child: Icon(Icons.contact_mail)),
-      //   ],
-      // ),
     );
   }
 
-  _viewContact(BuildContext context, String? tel, String? email, String? web) {
-    showDialog(
-        context: context,
-        //para cerrar la alerta haciendo click afuera:
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text(
-              "Nombre del negocio!",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Monserrat',
-                fontSize: 22,
-                color: Colors.teal[800],
-              ),
-            ),
-            content: Column(
-              //Para que se adapte el largo al contenido que tiene:
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(height: 25),
-                    Text(
-                      "Teléfono: ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Monserrat',
-                        fontSize: 18,
-                        color: Colors.teal[800],
-                      ),
-                    ),
-                    SizedBox(width: 15),
-                    Text(tel!),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    Text(
-                      "Email: ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Monserrat',
-                        fontSize: 18,
-                        color: Colors.teal[800],
-                      ),
-                    ),
-                    SizedBox(width: 15),
-                    Text(email!),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    Text(
-                      "Web: ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Monserrat',
-                        fontSize: 18,
-                        color: Colors.teal[800],
-                      ),
-                    ),
-                    SizedBox(width: 15),
-                    Text(web!),
-                  ],
-                ),
-              ],
-            ),
-            actions: <Widget>[
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    'Ok',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Monserrat',
-                      fontSize: 18,
-                      color: Colors.teal[800],
-                    ),
-                  )),
-            ],
-          );
-        });
-  }
 }
 
-class _backgroungImage extends StatelessWidget {
+class _BackgroungImage extends StatelessWidget {
   final String? imagen;
 
-  const _backgroungImage({Key? key, this.imagen}) : super(key: key);
+  const _BackgroungImage({Key? key, this.imagen}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
