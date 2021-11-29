@@ -3,11 +3,9 @@ import 'package:flutter_meedu/state.dart';
 import 'package:movil181/app/ui/pages/login/controller/login_controller.dart';
 import 'package:movil181/app/ui/pages/login/utils/send_login_form.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
-import 'package:movil181/app/ui/widgets/form.dart';
-import 'package:movil181/app/ui/widgets/logo.dart';
+import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:movil181/app/utils/validator_form.dart';
 import 'package:flutter_meedu/router.dart' as router;
-
 import 'package:flutter_meedu/meedu.dart';
 
 final loginProvider = SimpleProvider(
@@ -35,9 +33,10 @@ class LoginPage extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           FadeInImage(
-                              placeholder: AssetImage('assets/jar-loading.gif'),
-                              width: 220,
-                              image: AssetImage('assets/20Cuadras2_b.png')),
+                            placeholder: AssetImage('assets/jar-loading.gif'),
+                            width: 220,
+                            image: AssetImage('assets/20Cuadras2_b.png')
+                          ),
                           SizedBox(height: 20),
                           Text(
                             "Login",

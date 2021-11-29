@@ -17,7 +17,7 @@ class StorePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarGeneral().appBarG(context),
       body: Stack(children: [
-        _backgroungImage(imagen: storeService.selectedStore.image),
+        _BackgroungImage(imagen: storeService.selectedStore.image),
         Container(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -68,7 +68,7 @@ class StorePage extends StatelessWidget {
                                 fontSize: 15,
                                 color: Colors.black54,
                               ),
-                              maxLines: 9,
+                              maxLines: 7,
                             ),
                           ),
                           // Column(
@@ -148,6 +148,7 @@ class StorePage extends StatelessWidget {
       ]),
       floatingActionButton: Row(
         children: <Widget>[
+          /*
           SizedBox(width: 30),
           FloatingActionButton(
               heroTag: 'btn1',
@@ -156,7 +157,9 @@ class StorePage extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.ADDPROJECT);
               },
               child: Icon(Icons.edit)),
+          */
           Expanded(child: SizedBox()),
+          
           FloatingActionButton(
               heroTag: 'btn2',
               onPressed: () => _viewContact(
@@ -170,8 +173,7 @@ class StorePage extends StatelessWidget {
     );
   }
 
-  _viewContact(
-      BuildContext context, String? tel, String? direccion, String? web) {
+  _viewContact(BuildContext context, String? tel, String? direccion, String? web) {
     showDialog(
         context: context,
         //para cerrar la alerta haciendo click afuera:
@@ -263,10 +265,10 @@ class StorePage extends StatelessWidget {
   }
 }
 
-class _backgroungImage extends StatelessWidget {
+class _BackgroungImage extends StatelessWidget {
   final String? imagen;
 
-  const _backgroungImage({Key? key, this.imagen}) : super(key: key);
+  const _BackgroungImage({Key? key, this.imagen}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

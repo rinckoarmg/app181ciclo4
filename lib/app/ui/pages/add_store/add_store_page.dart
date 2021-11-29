@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:movil181/app/data/data_source/remote/services.dart';
 import 'package:movil181/app/ui/pages/add_store/add_store_controller.dart';
-import 'package:movil181/app/ui/widgets/store_image.dart';
-
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -154,22 +152,10 @@ class _AddStoreBodyState extends State<AddStoreBody> {
   }
 
   List<DropdownMenuItem<String>> getOpcionesDropdown() {
-    final List _categories = [
-      'Restaurantes',
-      'Farmacias',
-      'Licores',
-      'Minimercado',
-      'Panaderías',
-      'Paseador de perros',
-      'Plomería',
-      'Cerrajería',
-      'Servicios eléctricos',
-      'Servicios domésticos',
-      'La categoria NO existe!'
-    ];
+    final Listas _categories = Listas();
     List<DropdownMenuItem<String>> lista = [];
-
-    _categories.forEach((i) {
+    
+    _categories.listCategories().forEach((i) {
       lista.add(DropdownMenuItem(
         child: Text(i),
         value: i,
@@ -178,10 +164,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
     return lista;
   }
 
-  Widget _nombre(
-    String name,
-    AddStoreController pService,
-  ) {
+  Widget _nombre(String name, AddStoreController pService) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
@@ -452,7 +435,7 @@ class _AddStoreBodyState extends State<AddStoreBody> {
     );
   }
 
-  _atribucion(String? atribution, AddStoreController pService) {
+  Widget _atribucion(String? atribution, AddStoreController pService) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontFamily: 'Monserrat',
