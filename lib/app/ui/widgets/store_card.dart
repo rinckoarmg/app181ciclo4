@@ -89,8 +89,9 @@ class _StoreDetails extends StatelessWidget {
             children: [
               Text(
                 title,
+                textAlign: TextAlign.start,
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
                 maxLines: 1,

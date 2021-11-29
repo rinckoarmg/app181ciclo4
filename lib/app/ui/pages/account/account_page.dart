@@ -121,6 +121,7 @@ class AccountPage extends StatelessWidget {
         children: <Widget>[
           SizedBox(width: 30),
           FloatingActionButton(
+            tooltip: 'Cerrar sesión',
             heroTag: 'btn1',
             onPressed: () async {
               await Get.i.find<AuthenticationRepository>().signOut();
@@ -130,6 +131,7 @@ class AccountPage extends StatelessWidget {
           ),
           Expanded(child: SizedBox()),
           FloatingActionButton(
+            tooltip: 'Crear tienda',
               heroTag: 'btn2',
               onPressed: () {
                 storeService.selectedStore = new Stores(
