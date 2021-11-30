@@ -3,21 +3,29 @@ import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:movil181/app/domain/repositories/sing_up_repository.dart';
 import 'package:movil181/app/domain/responses/sing_up_responses.dart';
 import 'package:movil181/app/domain/use_cases/sing_up.dart';
+import 'package:movil181/app/ui/global_controllers/session_controller.dart';
 import 'package:movil181/app/ui/pages/register/controller/register_state.dart';
 
 class RegisterController extends StateNotifier<RegisterState> {
-  RegisterController() : super(RegisterState.initialState);
+  final SessionController _sessionController;
+  RegisterController(this._sessionController)
+      : super(RegisterState.initialState);
   final GlobalKey<FormState> formKey = GlobalKey();
   final _singUpRepository = Get.i.find<SignUpRepository>();
 
-  Future<SingUpResponse> submit() {
-    return _singUpRepository.register(
+  Future<SingUpResponse> submit() async {
+    final response = await _singUpRepository.register(
       SingUpData(
         email: state.email,
         name: state.name,
         password: state.password,
       ),
     );
+
+    if (response.error == null) {
+      _sessionController.setUser(response.user!);
+    }
+    return response;
   }
 
   void onNameChanged(String text) {

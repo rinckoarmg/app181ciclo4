@@ -5,11 +5,13 @@ import 'package:movil181/app/data/data_source/remote/product_service.dart';
 import 'package:movil181/app/data/data_source/remote/services.dart';
 import 'package:movil181/app/domain/models/models.dart';
 import 'package:movil181/app/domain/repositories/authentication_repository.dart';
+import 'package:movil181/app/ui/global_controllers/session_controller.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart' as prov;
 
 import 'package:flutter_meedu/flutter_meedu.dart';
+import 'package:flutter_meedu/state.dart';
 import 'package:flutter_meedu/router.dart' as router;
 
 class AccountPage extends StatelessWidget {
@@ -46,10 +48,12 @@ class AccountPage extends StatelessWidget {
                           fontSize: 22,
                           color: Colors.teal[800]),
                     ),
-                    Text(
-                      'Amanda Triviño',
-                      style: textTheme.bodyText1,
-                    ),
+                    Consumer(builder: (_, ref, __) {
+                      final user =
+                          ref.select(sessionProvider.select((_) => _.user!));
+                      return Text(user.displayName ?? '',
+                          style: textTheme.subtitle1);
+                    }),
                     SizedBox(height: 10),
                     Text(
                       'Email',
@@ -59,10 +63,12 @@ class AccountPage extends StatelessWidget {
                           fontSize: 22,
                           color: Colors.teal[800]),
                     ),
-                    Text(
-                      'amanda@domain.com',
-                      style: textTheme.bodyText1,
-                    ),
+                    Consumer(builder: (_, ref, __) {
+                      final user =
+                          ref.select(sessionProvider.select((_) => _.user));
+                      return Text(user!.email ?? '',
+                          style: textTheme.subtitle1);
+                    }),
                     SizedBox(height: 10),
                     Text(
                       'Celular',
@@ -72,10 +78,12 @@ class AccountPage extends StatelessWidget {
                           fontSize: 22,
                           color: Colors.teal[800]),
                     ),
-                    Text(
-                      '3434856934',
-                      style: textTheme.bodyText1,
-                    ),
+                    Consumer(builder: (_, ref, __) {
+                      final user =
+                          ref.select(sessionProvider.select((_) => _.user));
+                      return Text(user!.phoneNumber ?? '3333333333',
+                          style: textTheme.subtitle1);
+                    }),
                     SizedBox(height: 10),
                   ],
                 ),
@@ -149,7 +157,7 @@ class AccountPage extends StatelessWidget {
             tooltip: 'Cerrar sesión',
             heroTag: 'btn1',
             onPressed: () async {
-              await Get.i.find<AuthenticationRepository>().signOut();
+              await sessionProvider.read.singOut();
               router.pushNamedAndRemoveUntil(Routes.LOGIN);
             },
             child: Icon(Icons.exit_to_app_rounded),

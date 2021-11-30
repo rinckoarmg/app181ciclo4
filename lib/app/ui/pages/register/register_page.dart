@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
+import 'package:movil181/app/ui/global_controllers/session_controller.dart';
 import 'package:movil181/app/ui/pages/register/controller/register_controller.dart';
 import 'package:movil181/app/ui/pages/register/controller/register_state.dart';
 import 'package:movil181/app/ui/pages/register/utils/send_register_form.dart';
@@ -10,7 +11,7 @@ import 'package:movil181/app/utils/validator_form.dart';
 import 'package:flutter_meedu/router.dart' as router;
 
 final registerProvider = StateProvider<RegisterController, RegisterState>(
-  (_) => RegisterController(),
+  (_) => RegisterController(sessionProvider.read),
 );
 
 class RegisterPage extends StatelessWidget {

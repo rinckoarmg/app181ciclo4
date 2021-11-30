@@ -20,7 +20,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     return _user;
   }
 
-  void _init() {
+  void _init() async {
     _auth.authStateChanges().listen((User? user) {
       if (!_completer.isCompleted) {
         _completer.complete();

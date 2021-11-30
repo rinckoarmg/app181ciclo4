@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
+import 'package:movil181/app/ui/global_controllers/session_controller.dart';
 import 'package:movil181/app/ui/pages/splash/splash_controller.dart';
 //import 'package:flutter_meedu/state.dart';
 import 'package:flutter_meedu/router.dart' as router;
 
 final splashprovider = SimpleProvider(
-  (_) => SplashController(),
+  (_) => SplashController(sessionProvider.read),
 );
 
 class SplashPage extends StatelessWidget {

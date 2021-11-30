@@ -18,13 +18,14 @@ class SessionController extends SimpleNotifier {
     _user = null;
   }
 
-  @override
-  void dispose() {
-    print('object');
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   print('object');
+  //   super.dispose();
+  // }
 }
 
 final sessionProvider = SimpleProvider(
   (_) => SessionController(),
+  autoDispose: false,
 );
