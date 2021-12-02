@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:movil181/app/domain/models/models.dart';
+import 'package:movil181/app/ui/pages/pages.dart';
 
 class OrderService extends ChangeNotifier {
   final String _baseUrl = 'categorias-app-default-rtdb.firebaseio.com';
   final List<Orders> listOrder = [];
+  final List<Orders> listOrderXUser = [];
 
   late Orders selectedOrder;
 
@@ -27,7 +29,6 @@ class OrderService extends ChangeNotifier {
     orderMap.forEach((key, value) {
       final tempOrder = Orders.fromMap(value);
       tempOrder.referencia = key;
-
       listOrder.add(tempOrder);
     });
 
