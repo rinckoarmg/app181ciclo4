@@ -1,20 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
+import 'package:flutter_meedu/state.dart';
 import 'package:movil181/app/data/data_source/remote/services.dart';
 import 'package:movil181/app/domain/models/models.dart';
 import 'package:movil181/app/ui/global_controllers/session_controller.dart';
-import 'package:movil181/app/ui/routes/routes.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart' as prov;
 
-class AccountTab extends StatelessWidget {
-  const AccountTab({Key? key}) : super(key: key);
+class AccountTab extends ConsumerWidget {
+  AccountTab({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final user = User;
+  Widget build(BuildContext context, ref) {
+    final sessionController = ref.watch(sessionProvider);
+    final user = sessionController.user!;
+
     final TextTheme textTheme = Theme.of(context).textTheme;
+
+    final dName = user.displayName ?? '';
+    final letter = dName.isNotEmpty ? dName[0] : "";
 
     final orderService = prov.Provider.of<OrderService>(context);
     final storeService = prov.Provider.of<StoreService>(context);
@@ -28,56 +32,39 @@ class AccountTab extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircleAvatar(
-                    backgroundColor: Colors.greenAccent[400],
-                    radius: 80,
-                    backgroundImage: AssetImage('assets/no-image.png')),
+                  backgroundColor: Colors.teal[400],
+                  radius: 80,
+                  backgroundImage: user.photoURL != null
+                      ? AssetImage('assets/no-image.png')
+                      : null,
+                  child: user.photoURL == null
+                      ? Text(
+                          letter,
+                          style: const TextStyle(fontSize: 65),
+                        )
+                      : null,
+                ),
                 SizedBox(width: 30),
                 Column(
                   children: [
                     Text(
                       'Nombre',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Monserrat',
-                          fontSize: 22,
-                          color: Colors.teal[800]),
+                      style: textTheme.headline4,
                     ),
-                    Consumer(builder: (_, ref, __) {
-                      final user =
-                          ref.select(sessionProvider.select((_) => _.user!));
-                      return Text(user.displayName ?? '',
-                          style: textTheme.subtitle1);
-                    }),
+                    Text(user.displayName ?? '', style: textTheme.subtitle1),
                     SizedBox(height: 10),
                     Text(
                       'Email',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Monserrat',
-                          fontSize: 22,
-                          color: Colors.teal[800]),
+                      style: textTheme.headline4,
                     ),
-                    Consumer(builder: (_, ref, __) {
-                      final user =
-                          ref.select(sessionProvider.select((_) => _.user));
-                      return Text(user!.email ?? '',
-                          style: textTheme.subtitle1);
-                    }),
+                    Text(user.email ?? '', style: textTheme.subtitle1),
                     SizedBox(height: 10),
                     Text(
                       'Celular',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Monserrat',
-                          fontSize: 22,
-                          color: Colors.teal[800]),
+                      style: textTheme.headline4,
                     ),
-                    Consumer(builder: (_, ref, __) {
-                      final user =
-                          ref.select(sessionProvider.select((_) => _.user));
-                      return Text(user!.phoneNumber ?? '3333333333',
-                          style: textTheme.subtitle1);
-                    }),
+                    Text(user.phoneNumber ?? '3333333333',
+                        style: textTheme.subtitle1),
                     SizedBox(height: 10),
                   ],
                 ),

@@ -17,7 +17,7 @@ class UserProductCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 40),
       child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10),
+          margin: EdgeInsets.symmetric(vertical: 12),
           width: double.infinity,
           height: 50,
           decoration: BoxDecoration(

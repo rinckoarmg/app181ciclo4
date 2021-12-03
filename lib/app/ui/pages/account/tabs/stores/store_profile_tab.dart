@@ -10,32 +10,47 @@ import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart' as prov;
 
 class StoreProfileTab extends ConsumerWidget {
-  const StoreProfileTab({Key? key}) : super(key: key);
+  StoreProfileTab({Key? key}) : super(key: key);
+
+  String user = '';
 
   @override
   Widget build(BuildContext context, ref) {
-    final user = User;
+    final size = MediaQuery.of(context).size;
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     final orderService = prov.Provider.of<OrderService>(context);
     final storeService = prov.Provider.of<StoreService>(context);
     final productService = prov.Provider.of<ProductService>(context);
     final sessionController = ref.watch(sessionProvider);
-    return Container(
-      child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: 2,
-          itemBuilder: (_, int index) => GestureDetector(
-                onTap: () {
-                  storeService.selectedStore = storeService.listStores[index];
-                  Navigator.pushNamed(context, Routes.ADDPROJECT);
-                },
-                child: UserStoreCard(uStore: storeService.listStores[index]),
-              )
-          //UserStoreCard(uStore: storeService.listStores[index]),
 
-          ),
+    user = sessionController.user!.displayName ?? '';
+    return Padding(
+      padding: const EdgeInsets.only(top: 40),
+      child: Container(
+        //color: Colors.amber,
+        height: size.height * 0.60,
+        child: Column(children: [
+          Text('Mis tiendas', style: textTheme.headline5),
+          SizedBox(height: 20),
+          ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: 2,
+              itemBuilder: (_, int index) => GestureDetector(
+                    onTap: () {
+                      storeService.selectedStore =
+                          storeService.listStores[index];
+                      Navigator.pushNamed(context, Routes.ADDPROJECT);
+                    },
+                    child:
+                        UserStoreCard(uStore: storeService.listStores[index]),
+                  )
+              //UserStoreCard(uStore: storeService.listStores[index]),
+
+              ),
+        ]),
+      ),
     );
   }
 }

@@ -9,6 +9,7 @@ import 'package:movil181/app/ui/pages/account/tabs/account/account_tab.dart';
 import 'package:movil181/app/ui/pages/account/tabs/products/product_profile_tab.dart';
 import 'package:movil181/app/ui/pages/account/tabs/stores/store_profile_tab.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
+import 'package:movil181/app/ui/widgets/account_tab_bar.dart';
 import 'package:movil181/app/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart' as prov;
 
@@ -31,11 +32,12 @@ class AccountPage extends StatelessWidget {
         provider: accountProvider,
         builder: (_, controller) {
           return Scaffold(
+            bottomNavigationBar: AccountTabBar(),
             appBar: AppBarGeneral().appBarG(context),
             body: SafeArea(
                 child: TabBarView(
               controller: controller.tabController,
-              children: const [
+              children: [
                 AccountTab(),
                 StoreProfileTab(),
                 ProductProfileTab(),

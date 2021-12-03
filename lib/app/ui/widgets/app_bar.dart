@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:movil181/app/domain/repositories/authentication_repository.dart';
 import 'package:flutter_meedu/router.dart' as router;
+import 'package:movil181/app/ui/global_controllers/session_controller.dart';
 import 'package:movil181/app/ui/pages/home/filter_home_page.dart';
 import 'package:movil181/app/ui/pages/home/home_page.dart';
 import 'package:movil181/app/ui/routes/routes.dart';
@@ -24,31 +25,14 @@ class AppBarGeneral extends StatelessWidget {
       title: Image(image: AssetImage('assets/20Cuadras2_b.png'), height: 60),
       centerTitle: true,
       actions: <Widget>[
-        //AtomsCommon().buttomAppbBar('notifications'),
-
-        // Container(
-        //     child: IconButton(
-        //   onPressed: () {},
-        //   icon: Icon(Icons.add_to_photos),
-        // )),
-
         GestureDetector(
           //margin: EdgeInsets.only(right: 10.0),
           onTap: () => Navigator.pushNamed(context, Routes.ACCOUNT),
           child: CircleAvatar(
-            child: Text('CU'),
+            child: Text('D'),
             backgroundColor: Colors.teal[100],
           ),
         ),
-
-        // Container(
-        //     child: IconButton(
-        //   onPressed: () async {
-        //     await Get.i.find<AuthenticationRepository>().signOut();
-        //     router.pushNamedAndRemoveUntil(Routes.LOGIN);
-        //   },
-        //   icon: Icon(Icons.exit_to_app),
-        // )),
         _menu(context, categorias),
       ],
     );
@@ -231,13 +215,12 @@ class AppBarGeneral extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[700])),
               ),
             ]);
-            
   }
 }
 
 void onSelected(BuildContext context, int item, Listas tituloCategoria) {
   if (item == 11) {
-      Navigator.pushNamed(context, Routes.HOME);
+    Navigator.pushNamed(context, Routes.HOME);
   } else {
     for (int y = 0; y < tituloCategoria.listCategories().length; y++) {
       if (item == y + 1) {
@@ -248,3 +231,15 @@ void onSelected(BuildContext context, int item, Listas tituloCategoria) {
     }
   }
 }
+
+// class AccountInfo extends ConsumerWidget {
+//   const AccountInfo({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context, ref) {
+//     final sessionController = ref.watch(sessionProvider);
+//     final user = sessionController.user!;
+//     final displayName = user.displayName ?? '';
+//     final letter = displayName.isNotEmpty ? displayName[0] : "";
+//     return Text(displayName);
+//   }
+// }
