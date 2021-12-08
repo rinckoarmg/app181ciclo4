@@ -7,4 +7,6 @@ abstract class Routes {
   static const ADDPROJECT = '/add_project_page';
   static const PRODUCT = '/product_page';
   static const ACCOUNT = '/account_page';
+  static const CHECKOUT = '/confirm_order_page';
+  static const SUCCESS = '/success_order_page';
 }

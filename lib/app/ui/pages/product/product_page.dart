@@ -11,9 +11,9 @@ class ProductPage extends StatefulWidget {
   _ProductPageState createState() => _ProductPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {  
+class _ProductPageState extends State<ProductPage> {
   int _cont = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     final productService = Provider.of<ProductService>(context);
@@ -107,24 +107,32 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                           ),
-                          
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              FloatingActionButton(mini: true, onPressed: _sustraer, child: Icon(Icons.remove), heroTag: 'btn1'),
+                              FloatingActionButton(
+                                  mini: true,
+                                  onPressed: _sustraer,
+                                  child: Icon(Icons.remove),
+                                  heroTag: 'btn1'),
                               SizedBox(width: 20),
                               Text('$_cont', style: TextStyle(fontSize: 45)),
                               SizedBox(width: 20),
-                              FloatingActionButton(mini: true ,onPressed: _agregar, child: Icon(Icons.add), heroTag: 'btn2'),
+                              FloatingActionButton(
+                                  mini: true,
+                                  onPressed: _agregar,
+                                  child: Icon(Icons.add),
+                                  heroTag: 'btn2'),
                             ],
                           ),
-                          
+
                           Center(
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 20),
                               child: Text(
-                                'Precio Final: \$${(productService.selectedProduct.precio)*_cont}',
+                                'Precio Final: \$${(productService.selectedProduct.precio) * _cont}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Monserrat',
@@ -134,9 +142,21 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 20),
+                          //SizedBox(height: 10),
                           //TODO:llevar la orden del pedido
-                          Center(child: ElevatedButton(onPressed: (){}, child: Text('Hacer pedido',style: TextStyle(fontSize: 20),))),
+                          Center(
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, Routes.CHECKOUT);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text(
+                                      'Hacer pedido',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ))),
                           SizedBox(height: 20),
                         ],
                       )),
@@ -147,17 +167,16 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  void _agregar(){
-    setState(() => _cont++ ); //<-este sirve para que se redibuje el widget
+  void _agregar() {
+    setState(() => _cont++); //<-este sirve para que se redibuje el widget
   }
 
-  void _sustraer(){
+  void _sustraer() {
     if (_cont >= 1) {
-      setState(() => _cont--);  
+      setState(() => _cont--);
     }
   }
 }
-
 
 class _BackgroungImage extends StatelessWidget {
   final String? imagen;

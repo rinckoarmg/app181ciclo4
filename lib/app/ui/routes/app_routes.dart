@@ -3,6 +3,8 @@ import 'package:movil181/app/ui/pages/account/account_page.dart';
 import 'package:movil181/app/ui/pages/add_store/add_store_page.dart';
 import 'package:movil181/app/ui/pages/home/home_page.dart';
 import 'package:movil181/app/ui/pages/login/login_page.dart';
+import 'package:movil181/app/ui/pages/orders/confirm_order_page.dart';
+import 'package:movil181/app/ui/pages/orders/success_order_page.dart';
 import 'package:movil181/app/ui/pages/product/product_page.dart';
 import 'package:movil181/app/ui/pages/store/store_page.dart';
 import 'package:movil181/app/ui/pages/register/register_page.dart';
@@ -18,4 +20,6 @@ Map<String, Widget Function(BuildContext)> get appRoutes => {
       Routes.ADDPROJECT: (_) => const AddStorePage(),
       Routes.PRODUCT: (_) => const ProductPage(),
       Routes.ACCOUNT: (_) => const AccountPage(),
+      Routes.CHECKOUT: (_) => const ConfirmOrder(),
+      Routes.SUCCESS: (_) => const SuccessPage(),
     };
